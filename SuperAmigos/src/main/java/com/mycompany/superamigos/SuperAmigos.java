@@ -3,9 +3,7 @@
  */
 
 package com.mycompany.superamigos;
-
-import Model.Person;
-
+import View.Viewer;
 /**
  *
  * @author Jhomar Arrieta
@@ -17,10 +15,8 @@ import Model.Person;
  * 
  */
 public class SuperAmigos {
-private Person person = new Person();
-    public void main(String[] args) {
-        person.setNombre("brayan");
-        person.setPais("narnia");
-        System.out.println(person.toString());
+    public static void main(String[] args) {
+        Viewer viewer = new Viewer();
+        viewer.setVisible(true);
     }
 }

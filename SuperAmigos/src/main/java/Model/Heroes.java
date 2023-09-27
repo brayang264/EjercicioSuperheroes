@@ -16,15 +16,8 @@ public class Heroes extends Person implements Poderes{
     private int see;
     private String artefacto;
     private int force;
-    List<Heroes> listaDeHeroes = new ArrayList<>();
 
-    public Heroes(int see, String artefacto, int force, String superNombre, String nombre,String pais, int edad, boolean disponibilidad, boolean soltero) {
-        super(nombre, superNombre, pais, edad, disponibilidad, soltero);
-        this.see = see;
-        this.artefacto = artefacto;
-        this.force = force;
-        this.superNombre = superNombre;
-    }
+
     
 
     
@@ -65,15 +58,6 @@ public class Heroes extends Person implements Poderes{
     public void setForce(int force) {
         this.force = force;
     }
-
-    public List<Heroes> getListaDeHeroes() {
-        return listaDeHeroes;
-    }
-    @Override
-    public String toString(){
-        return "Super nombre "+superNombre+" edad: "+edad+" pais: "+pais+" dispnibilidad: "+disponibilidad+" soltero: "+soltero;
-    }
-
     @Override
     public void see(String artefacto, int see) {
         if(!artefacto.isEmpty()){

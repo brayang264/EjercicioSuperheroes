@@ -8,53 +8,127 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Jhomar Arrieta
+ * @author Brayan Gómez
  * 
- * Esto es un bean
+ * @version 1.0
  * 
  */
 public class Person {
-    private String nombre;
-    String pais;
-    int edad;
-    boolean disponibilidad;
-    boolean soltero;
-
+    //Class fields
+    private String name;
+    private String country;
+    private float age;
+    private boolean availability;
+    private boolean single;
+    private String address;
+    private float scaleOfEvil;
+    private float weight;
+    private float height;
+    private boolean physicalProblems;
+    private boolean mentalProblems;
     //constructor
     //se puede crear con todos o con cada uno
-    public Person(String nombre, String superNombre, String pais, int edad, boolean disponibilidad,
-        boolean soltero) {
-        this.nombre = nombre;
-        this.pais = pais;
-        this.disponibilidad = disponibilidad;
-        this.edad = edad;
-        this.soltero = soltero;
+
+    public Person(String name, String country, float age, boolean availability, boolean single, String address, float scaleOfEvil, float weight, float height, boolean physicalProblems, boolean mentalProblems) {
+        this.name = name;
+        this.country = country;
+        this.age = age;
+        this.availability = availability;
+        this.single = single;
+        this.address = address;
+        this.scaleOfEvil = scaleOfEvil;
+        this.weight = weight;
+        this.height = height;
+        this.physicalProblems = physicalProblems;
+        this.mentalProblems = mentalProblems;
     }
-    public Person(){
-        
+
+    //Constructor vacio o predeterminado
+    public Person() {
     }
     
 //para encapsular getter and setter
-    
-    public String getNombre() {
-        return nombre;
+
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPais() {
-        return pais;
+    public String getCountry() {
+        return country;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
+    public float getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
+
+    public boolean isSingle() {
+        return single;
+    }
+
+    public void setSingle(boolean single) {
+        this.single = single;
+    }
+    public String getAddress(){
+        return address;
+    }
+    public void setAddress(String address){
+        this.address = address;
+    }
+    public float getScaleOfEvil(){
+        return scaleOfEvil;
+    }
+    public void setScaleOfEvil(int scaleOfEvil){
+        this.scaleOfEvil = scaleOfEvil;
+    }
+    public float getWeight(){
+        return weight;
+    }
+    public void setWeight(int weight){
+        this.weight = weight;
+    }
+    public float getHeight(){
+        return height;
+    }
+    public void setHeight(int height){
+        this.height = height;
+    }
+    public boolean getPhysicalProblems(){
+        return physicalProblems;
+    }
+    public void setPhysicalProblems(boolean physicalProblems){
+        this.physicalProblems = physicalProblems;
+    }
+    public boolean getMentalProblems(){
+        return mentalProblems;
+    }
+    private void setMentalProblems(boolean mentalProblems){
+        this.mentalProblems = mentalProblems;
+    }
+    //Metodo toString para obtener datos del objeto
     @Override //Object -> utilizar este string y no del papá
     public String toString() {
-        return "Person{" + "nombre=" + nombre + ", superNombre=" +  ", pais=" + pais + '}';
+        return "Person{" + "nombre: " + name+" " + "\nPais: " + country +"\nEdad: "+age+"\nDirección de residencia: "+
+                address+((single)?"\nSoltero":"\nComprometido")+((availability)?"\nDisponible":"\nNo disponible")+ '}';
     }
     
 }
