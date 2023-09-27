@@ -58,14 +58,14 @@ public class Viewer extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(registerPersons)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 587, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +92,7 @@ public class Viewer extends javax.swing.JFrame {
 //Crea una nueva instancia del formulario register y lo proyecta en el panel content
     private void registerPersonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPersonsActionPerformed
         Register register = new Register();
-        register.setSize(508,479); 
+        register.setSize(587,536); 
         register.setLocation(0,0);
         content.removeAll();
         content.add(register,BorderLayout.CENTER);

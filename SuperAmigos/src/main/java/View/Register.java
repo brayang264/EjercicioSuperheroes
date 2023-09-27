@@ -53,6 +53,7 @@ public class Register extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         mentalCheck = new javax.swing.JCheckBox();
         registerButton = new javax.swing.JButton();
+        viewPersons = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 255, 255));
 
@@ -114,23 +115,34 @@ public class Register extends javax.swing.JPanel {
             }
         });
 
+        viewPersons.setText("Ver personas registradas");
+        viewPersons.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPersonsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel9))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9))
-                        .addGap(23, 23, 23)
+                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(viewPersons))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameField)
                             .addComponent(ageField)
@@ -138,40 +150,32 @@ public class Register extends javax.swing.JPanel {
                             .addComponent(addressField)
                             .addComponent(weightField)
                             .addComponent(heightField)
-                            .addComponent(maldadField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                            .addComponent(maldadField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(physicalCheck)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(availabilityCheck)
-                                            .addComponent(singleCheck)
-                                            .addComponent(jLabel10)
-                                            .addComponent(physicalCheck)
-                                            .addComponent(jLabel11)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(mentalCheck))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                                    .addComponent(availabilityCheck)
+                                    .addComponent(jLabel8)
+                                    .addComponent(singleCheck)))
+                            .addComponent(mentalCheck))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,22 +186,12 @@ public class Register extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(availabilityCheck)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(singleCheck)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(weightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(heightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,15 +200,27 @@ public class Register extends javax.swing.JPanel {
                             .addComponent(jLabel9)
                             .addComponent(maldadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel7)
+                        .addGap(4, 4, 4)
+                        .addComponent(availabilityCheck)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(singleCheck)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel10)
                         .addGap(5, 5, 5)
                         .addComponent(physicalCheck)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addComponent(mentalCheck)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(registerButton)
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registerButton)
+                    .addComponent(viewPersons))
+                .addGap(62, 62, 62))
         );
     }// </editor-fold>//GEN-END:initComponents
 //Cambia el texto de availabilityCheck si se selecciona o no
@@ -238,7 +244,7 @@ public class Register extends javax.swing.JPanel {
         if(validate.convertToFloat(ageField.getText())==0||validate.convertToFloat(maldadField.getText())==0
                 ||validate.convertToFloat(weightField.getText())==0||validate.convertToFloat(heightField.getText())
                 ==0){
-            JOptionPane.showInputDialog(null, "Se han ingresado datos de manera erronea",
+            JOptionPane.showMessageDialog(null, "Se han ingresado datos de manera erronea",
                     "Datos incorrectos", 1);
         }else{
             create.createPerson(nameField.getText(), countryField.getText(),
@@ -247,11 +253,27 @@ public class Register extends javax.swing.JPanel {
                     validate.convertToFloat(weightField.getText()),validate.convertToFloat(heightField.getText()) , physicalCheck.isShowing(),
                     mentalCheck.isSelected());
             clearFields();
+            JOptionPane.showMessageDialog(null, "Se hizo un registro exitoso",
+                    "Registro hecho ", 1);
         }
     }//GEN-LAST:event_registerButtonActionPerformed
-
+//Metodo para ver las personas que se han registrado
+    private void viewPersonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPersonsActionPerformed
+        JOptionPane.showMessageDialog(null, create.printPersons(), "Personas registradas", 1);
+    }//GEN-LAST:event_viewPersonsActionPerformed
+//Se hace una limpiesa de los textBox y checkBox
     private void clearFields(){
-        
+        nameField.setText("");
+        ageField.setText("");
+        countryField.setText("");
+        availabilityCheck.setSelected(false);
+        singleCheck.setSelected(false);
+        addressField.setText("");
+        maldadField.setText("");
+        weightField.setText("");
+        heightField.setText("");
+        physicalCheck.setSelected(false);
+        mentalCheck.setSelected(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressField;
@@ -276,6 +298,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JCheckBox physicalCheck;
     private javax.swing.JButton registerButton;
     private javax.swing.JCheckBox singleCheck;
+    private javax.swing.JButton viewPersons;
     private javax.swing.JTextField weightField;
     // End of variables declaration//GEN-END:variables
 }

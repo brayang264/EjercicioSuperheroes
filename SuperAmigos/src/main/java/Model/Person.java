@@ -127,8 +127,8 @@ public class Person {
     //Metodo toString para obtener datos del objeto
     @Override //Object -> utilizar este string y no del papá
     public String toString() {
-        return "Person{" + "nombre: " + name+" " + "\nPais: " + country +"\nEdad: "+age+"\nDirección de residencia: "+
-                address+((single)?"\nSoltero":"\nComprometido")+((availability)?"\nDisponible":"\nNo disponible")+ '}';
+        return "Nombre: " + name+" " + "\nPais: " + country +"\nEdad: "+age+"\nDirección de residencia: "+
+                address+((single)?"\nSoltero":"\nComprometido")+((availability)?"\nDisponible":"\nNo disponible")+"\n";
     }
     
 }

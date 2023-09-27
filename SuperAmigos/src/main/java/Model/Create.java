@@ -28,6 +28,15 @@ public class Create {
         personList.add(person);
         
     }
+    public String printPersons(){
+        String result="";
+        result+= "-------------------------------\n";
+        for(Person person: personList){
+            result+= person.toString();
+            result+= "-------------------------------\n";
+        }
+       return result;
+    }
     //Metdoo para obetenr la lista de personas que se han registrado
     public ArrayList<Person> getArray(){
         return personList;
