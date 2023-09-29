@@ -16,7 +16,7 @@ import View.Viewer;
  */
 public class SuperAmigos {
     public static void main(String[] args) {
-        Viewer viewer = new Viewer();
+        Viewer viewer = Viewer.getInstance();
         viewer.setVisible(true);
     }
 }

@@ -11,14 +11,19 @@ import java.awt.BorderLayout;
  * @author Admin
  */
 public class Viewer extends javax.swing.JFrame {
-
+private static Viewer instance;
     /**
      * Creates new form Viewer
      */
-    public Viewer() {
+    private Viewer() {
         initComponents();
     }
-
+    public static Viewer getInstance(){
+        if(instance == null){
+            instance = new Viewer();
+        }
+        return instance;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +96,7 @@ public class Viewer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //Crea una nueva instancia del formulario register y lo proyecta en el panel content
     private void registerPersonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPersonsActionPerformed
-        Register register = new Register();
+        Register register = Register.getInstance();
         register.setSize(587,536); 
         register.setLocation(0,0);
         content.removeAll();

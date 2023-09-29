@@ -13,14 +13,20 @@ import javax.swing.JOptionPane;
 public class Register extends javax.swing.JPanel {
     private Create create = Create.getInstance();
     private Validate validate = new Validate();
-
+    private static Register instance;
     /**
      * Creates new form Register
      */
-    public Register() {
+    private Register() {
         initComponents();
+        evilField.setVisible(false);
     }
-
+    public static Register getInstance(){
+        if(instance == null){
+            instance = new Register();
+        }
+        return instance;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,15 +53,16 @@ public class Register extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         singleCheck = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
-        maldadField = new javax.swing.JTextField();
+        evilField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         physicalCheck = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         mentalCheck = new javax.swing.JCheckBox();
         registerButton = new javax.swing.JButton();
         viewPersons = new javax.swing.JButton();
+        calculateLevelEvil = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(153, 255, 255));
+        setBackground(new java.awt.Color(51, 51, 255));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre:");
@@ -90,6 +97,8 @@ public class Register extends javax.swing.JPanel {
 
         jLabel9.setText("Maldad: ");
 
+        evilField.setEnabled(false);
+
         jLabel10.setText("¿Sufre de alguno condición física?");
 
         physicalCheck.setText("No sufre de alguna condición física");
@@ -122,35 +131,52 @@ public class Register extends javax.swing.JPanel {
             }
         });
 
+        calculateLevelEvil.setText("Calcular nivel de maldad");
+        calculateLevelEvil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateLevelEvilActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel9))
-                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(viewPersons))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(23, 23, 23)
+                                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
+                                .addComponent(viewPersons))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(31, 31, 31)
+                                .addComponent(evilField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameField)
-                            .addComponent(ageField)
-                            .addComponent(countryField)
-                            .addComponent(addressField)
-                            .addComponent(weightField)
-                            .addComponent(heightField)
-                            .addComponent(maldadField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(91, 91, 91)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(ageField)
+                                    .addComponent(countryField)
+                                    .addComponent(addressField)
+                                    .addComponent(weightField)
+                                    .addComponent(heightField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(calculateLevelEvil)))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -164,7 +190,7 @@ public class Register extends javax.swing.JPanel {
                                     .addComponent(jLabel8)
                                     .addComponent(singleCheck)))
                             .addComponent(mentalCheck))))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,7 +224,9 @@ public class Register extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(maldadField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(evilField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(calculateLevelEvil))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel7)
@@ -216,7 +244,7 @@ public class Register extends javax.swing.JPanel {
                         .addComponent(jLabel11)
                         .addGap(27, 27, 27)
                         .addComponent(mentalCheck)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerButton)
                     .addComponent(viewPersons))
@@ -241,15 +269,15 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_changedMentalCheck
 //Se hace un registro del usuario y se limpian los campos
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        if(validate.convertToFloat(ageField.getText())==0||validate.convertToFloat(maldadField.getText())==0
-                ||validate.convertToFloat(weightField.getText())==0||validate.convertToFloat(heightField.getText())
-                ==0){
+        if(validate.convertToFloat(ageField.getText())==-1||validate.convertToFloat(evilField.getText())==-1
+                ||validate.convertToFloat(weightField.getText())==-1||validate.convertToFloat(heightField.getText())
+                ==-1){
             JOptionPane.showMessageDialog(null, "Se han ingresado datos de manera erronea",
                     "Datos incorrectos", 1);
         }else{
             create.createPerson(nameField.getText(), countryField.getText(),
                     validate.convertToFloat(ageField.getText()), availabilityCheck.isSelected(),
-                    singleCheck.isSelected(), addressField.getText(), validate.convertToFloat(maldadField.getText()), 
+                    singleCheck.isSelected(), addressField.getText(), validate.convertToFloat(evilField.getText()), 
                     validate.convertToFloat(weightField.getText()),validate.convertToFloat(heightField.getText()) , physicalCheck.isShowing(),
                     mentalCheck.isSelected());
             clearFields();
@@ -261,6 +289,23 @@ public class Register extends javax.swing.JPanel {
     private void viewPersonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPersonsActionPerformed
         JOptionPane.showMessageDialog(null, create.printPersons(), "Personas registradas", 1);
     }//GEN-LAST:event_viewPersonsActionPerformed
+
+    private void calculateLevelEvilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateLevelEvilActionPerformed
+        int answer = JOptionPane.showConfirmDialog(null,"¿Alguna vez a realizado algun asesinato?", "Pregunta", 1);
+        if(answer == JOptionPane.YES_OPTION){
+            showTest();
+        }else{
+            evilField.setText("0");
+            evilField.setVisible(true);
+            calculateLevelEvil.setVisible(false);
+        }
+    }//GEN-LAST:event_calculateLevelEvilActionPerformed
+    private void showTest(){
+        Viewer viewer = Viewer.getInstance();
+        viewer.setVisible(false);
+        TestViewer test = new TestViewer();
+        test.setVisible(true);
+    }
 //Se hace una limpiesa de los textBox y checkBox
     private void clearFields(){
         nameField.setText("");
@@ -269,17 +314,24 @@ public class Register extends javax.swing.JPanel {
         availabilityCheck.setSelected(false);
         singleCheck.setSelected(false);
         addressField.setText("");
-        maldadField.setText("");
+        evilField.setText("");
         weightField.setText("");
         heightField.setText("");
         physicalCheck.setSelected(false);
         mentalCheck.setSelected(false);
     }
+    public void setEvilLevel(String evil){
+        evilField.setText(evil);
+        calculateLevelEvil.setVisible(false);
+        evilField.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressField;
     private javax.swing.JTextField ageField;
     private javax.swing.JCheckBox availabilityCheck;
+    private javax.swing.JButton calculateLevelEvil;
     private javax.swing.JTextField countryField;
+    private javax.swing.JTextField evilField;
     private javax.swing.JTextField heightField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -292,7 +344,6 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField maldadField;
     private javax.swing.JCheckBox mentalCheck;
     private javax.swing.JTextField nameField;
     private javax.swing.JCheckBox physicalCheck;
