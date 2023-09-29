@@ -90,18 +90,19 @@ public class TestViewer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//regresa a la pagina anterior 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         Viewer viewer = Viewer.getInstance();
         viewer.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_returnButtonActionPerformed
-
+//Evalua la elección y le da un valor a la maldad de la persona 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         Register register = Register.getInstance();
         register.setEvilLevel(getEvil());
         returnButtonActionPerformed(evt);
     }//GEN-LAST:event_confirmButtonActionPerformed
+    //Obtiene la selección y le da un puntaje en la escala de maldad
     private String getEvil(){
         String evil = "0";
         switch(boxReason.getSelectedIndex()){

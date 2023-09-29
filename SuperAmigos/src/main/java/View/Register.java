@@ -61,6 +61,7 @@ public class Register extends javax.swing.JPanel {
         registerButton = new javax.swing.JButton();
         viewPersons = new javax.swing.JButton();
         calculateLevelEvil = new javax.swing.JButton();
+        randomRegister = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 255));
 
@@ -138,31 +139,19 @@ public class Register extends javax.swing.JPanel {
             }
         });
 
+        randomRegister.setText("Registrar de manera aleatoria");
+        randomRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randomRegisterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(23, 23, 23)
-                                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88)
-                                .addComponent(viewPersons))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(31, 31, 31)
-                                .addComponent(evilField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -176,7 +165,20 @@ public class Register extends javax.swing.JPanel {
                                     .addComponent(heightField)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
-                                .addComponent(calculateLevelEvil)))
+                                .addComponent(calculateLevelEvil))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(evilField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -189,7 +191,15 @@ public class Register extends javax.swing.JPanel {
                                     .addComponent(availabilityCheck)
                                     .addComponent(jLabel8)
                                     .addComponent(singleCheck)))
-                            .addComponent(mentalCheck))))
+                            .addComponent(mentalCheck)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(viewPersons))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(randomRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -244,11 +254,13 @@ public class Register extends javax.swing.JPanel {
                         .addComponent(jLabel11)
                         .addGap(27, 27, 27)
                         .addComponent(mentalCheck)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerButton)
                     .addComponent(viewPersons))
-                .addGap(62, 62, 62))
+                .addGap(18, 18, 18)
+                .addComponent(randomRegister)
+                .addGap(46, 46, 46))
         );
     }// </editor-fold>//GEN-END:initComponents
 //Cambia el texto de availabilityCheck si se selecciona o no
@@ -300,6 +312,33 @@ public class Register extends javax.swing.JPanel {
             calculateLevelEvil.setVisible(false);
         }
     }//GEN-LAST:event_calculateLevelEvilActionPerformed
+
+    private void randomRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomRegisterActionPerformed
+       boolean flag = false;
+       String numOfPersonsText="";
+       int numOfPersons=0;
+        do{
+            
+           numOfPersonsText=JOptionPane.showInputDialog(null, "Ingrese el número de personas que desea generar"
+                   + " aleatoriamente", 1);
+           if(!validate.isANumber(numOfPersonsText)){
+               validate.print("No se ingreso un valor de tipo númerico\nIngreselo nuevamente");
+               continue;
+           }
+           else{
+               numOfPersons = (int)validate.convertToFloat(numOfPersonsText);
+           }if(numOfPersons <20){
+               validate.print("Ingrese un número mayor a 20");
+           }else if(numOfPersons %2 !=0){
+               validate.print("Ingrese un número entero");
+           }else{
+               flag=true;
+           }
+       }while(!flag);
+       create.randomPersons(numOfPersons);
+       validate.print("Se han creado "+numOfPersons+" personas");
+       
+    }//GEN-LAST:event_randomRegisterActionPerformed
     private void showTest(){
         Viewer viewer = Viewer.getInstance();
         viewer.setVisible(false);
@@ -347,6 +386,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JCheckBox mentalCheck;
     private javax.swing.JTextField nameField;
     private javax.swing.JCheckBox physicalCheck;
+    private javax.swing.JButton randomRegister;
     private javax.swing.JButton registerButton;
     private javax.swing.JCheckBox singleCheck;
     private javax.swing.JButton viewPersons;

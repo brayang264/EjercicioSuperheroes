@@ -4,6 +4,8 @@
  */
 package Model;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -21,5 +23,8 @@ public class Validate {
         }catch(NumberFormatException e){
             return false;
         }
+    }
+    public void print(String text){
+        JOptionPane.showMessageDialog(null, text, "Mensaje", 1);
     }
 }
