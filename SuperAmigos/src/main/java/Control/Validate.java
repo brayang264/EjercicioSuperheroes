@@ -4,7 +4,7 @@
  */
 package Control;
 
-import Model.Heroes;
+import Model.Hero;
 import Model.Person;
 
 /**
@@ -13,6 +13,6 @@ import Model.Person;
  */
 public interface Validate {
     public boolean isHero(Person person);
-    public Heroes createHero(Person person, String artefacto, int force, int see);
+    public Hero createHero(Person person, String artefacto, int force, int see);
     
 }
