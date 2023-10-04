@@ -299,7 +299,7 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_registerButtonActionPerformed
 //Metodo para ver las personas que se han registrado
     private void viewPersonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPersonsActionPerformed
-        JOptionPane.showMessageDialog(null, create.printPersons(), "Personas registradas", 1);
+        validate.print(create.printPersons());
     }//GEN-LAST:event_viewPersonsActionPerformed
 
     private void calculateLevelEvilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateLevelEvilActionPerformed

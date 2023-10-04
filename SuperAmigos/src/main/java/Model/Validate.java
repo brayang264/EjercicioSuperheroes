@@ -4,7 +4,11 @@
  */
 package Model;
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -25,6 +29,15 @@ public class Validate {
         }
     }
     public void print(String text){
-        JOptionPane.showMessageDialog(null, text, "Mensaje", 1);
+        JTextArea textArea = new JTextArea(10, 40);
+        textArea.setText(text);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+
+        // Configura el cuadro de diálogo personalizado
+        scrollPane.setPreferredSize(new Dimension(400, 200));
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        // Muestra el cuadro de diálogo personalizado
+        JOptionPane.showMessageDialog(null, scrollPane, text, JOptionPane.INFORMATION_MESSAGE);
     }
 }
