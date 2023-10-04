@@ -130,5 +130,8 @@ public class Person {
         return "Nombre: " + name+" " + "\nPais: " + country +"\nEdad: "+age+"\nDirección de residencia: "+
                 address+((single)?"\nSoltero":"\nComprometido")+((availability)?"\nDisponible":"\nNo disponible")+"\n";
     }
-    
+    public boolean equals(Person person){
+        return(this.name == person.name&&this.age==person.age&&this.address==person.address&&
+                this.scaleOfEvil==person.scaleOfEvil&&this.weight==person.weight&&this.height==person.height);
+    }
 }
