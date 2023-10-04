@@ -3,8 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
+import java.awt.Point;
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,14 +25,16 @@ public class Create {
     private ArrayList<String> countries;
     //Se crea un singleton para tener una unica instancia de la clase 
     private static Create instance;
+    //ArrayListt para guardar personas
+    private ArrayList<Person> personList = new ArrayList<Person>();
+    //ArrayList para guardar los superhumanos
+    private ArrayList<Hero> heroesList = new ArrayList<Hero>();
     //El constructor es privado para que solo pueda acceder a través del metodo getInstace y asi solo crear una instancas de la clase
     private Create(){
         inicializeNames();
         inicializeSurname();
         inicializeCountries();
     }
-    
-    private ArrayList<Person> personList = new ArrayList<Person>();
     //Se crea la persona y se agrega a la lista
     public void createPerson(String name, String country, float age, boolean availability, boolean single,
             String address, float scaleOfEvil, float weight, float height, boolean physicalProblems,
@@ -38,6 +44,55 @@ public class Create {
         personList.add(person);
         
     }
+    
+    //Se clasifican las personas y se crean los heroes con aquellas que cumplen
+    public void createHero(){
+        int cont =0;
+        ArrayList<Integer> indexRemove = new ArrayList<Integer>();
+        for(Person person: personList){
+            if(clasificate(person)){
+                Device device = new Device("Gafas rayos x",20,100,20,20);
+                Point point = new Point(0,0);
+                Hero hero = new Hero(JOptionPane.showInputDialog(null, "Ingrese el super nombre de "+
+                        person.getName(), "Super nombre", 1),person.getWeight()*10,20,device,
+                        false,false,false,false,false,point, 100);
+                addToListHero(hero);
+                indexRemove.add(cont);
+            }
+            cont++;
+        }
+       removePerson(indexRemove);
+  
+    }
+    //Clasifica las personas
+    private boolean clasificate(Person person){
+        return((person.getScaleOfEvil()<=2)&&person.isAvailability()&&person.isSingle()&&!person.getMentalProblems()
+                &&!person.getPhysicalProblems());
+    }
+    //Agregar heroe a la lista
+    private void addToListHero(Hero hero){
+        heroesList.add(hero);
+    }
+    //Elimina a una persona de la lista
+    public void removePerson(ArrayList<Integer> index){
+        for(int reference:index){
+            JOptionPane.showMessageDialog(null, personList.get(reference).toString());
+            personList.remove(reference);
+        }
+    }
+    //Imprime la lista de heroes
+    public String printHeroes(){
+        if(heroesList.size()==0){
+            return"No se han creado personas, primero creo personas para poder realizar la clasificación";
+        }
+        String result="Hay "+heroesList.size()+" actualmente y son: \n------------\n";
+        for(Hero hero: heroesList){
+            result+=hero.toString();
+            result+="\n------------\n";
+        }
+        return result;
+    }
+    //Imprime la lista de personas que hay registradas
     public String printPersons(){
         String result="";
         result+= "-------------------------------\n";
@@ -61,8 +116,8 @@ public class Create {
     public void randomPersons(int n){
         for(int i =0; i<n;i++){
             createPerson(getName(),getCountry(),random.nextInt(43)+18,random.nextBoolean(),
-                    random.nextBoolean(),getAddress(),random.nextInt(23),random.nextInt(141)+60,
-                    random.nextInt(51)+150,random.nextBoolean(),random.nextBoolean());
+                    random.nextBoolean(),getAddress(),random.nextInt(5),random.nextInt(141)+60,
+                    random.nextInt(51)+150,false,false);
         }
     }
     //Obtiene un nombre al azar del array

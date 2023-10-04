@@ -14,10 +14,11 @@ import java.util.List;
  * @author brayan.gomez1
  */
 public class Hero extends Person implements Poderes{
+    //Campos de la clase
     private String superName;
-    private int force;
+    private float force;
     private int see;
-    private String device;
+    private Device device;
     private boolean canFly;
     private boolean canBeInvisible;
     private boolean fly;
@@ -25,20 +26,40 @@ public class Hero extends Person implements Poderes{
     private boolean canTeleport;
     private Point position;
     private int health;
+
+    //Constructores
     
-        public String getSuperName() {
-        return superName;
+    public Hero(String superName, float force, int see, Device device,
+            boolean canFly, boolean canBeInvisible, boolean fly, boolean invisible, 
+            boolean canTeleport, Point position, int health) {
+        this.superName = superName;
+        this.force = force;
+        this.see = see;
+        this.device = device;
+        this.canFly = canFly;
+        this.canBeInvisible = canBeInvisible;
+        this.fly = fly;
+        this.invisible = invisible;
+        this.canTeleport = canTeleport;
+        this.position = position;
+        this.health = health;
     }
 
+    public Hero() {
+    }
+    //metodos getter and setter
+    public String getSuperName() {
+        return superName;
+    }  
     public void setSuperName(String superName) {
         this.superName = superName;
     }
 
-    public int getForce() {
+    public float getForce() {
         return force;
     }
 
-    public void setForce(int force) {
+    public void setForce(float force) {
         this.force = force;
     }
 
@@ -50,11 +71,11 @@ public class Hero extends Person implements Poderes{
         this.see = see;
     }
 
-    public String getDevice() {
+    public Device getDevice() {
         return device;
     }
 
-    public void setDevice(String device) {
+    public void setDevice(Device device) {
         this.device = device;
     }
 
@@ -98,16 +119,16 @@ public class Hero extends Person implements Poderes{
         this.position = position;
     }
     @Override
-    public void see(String device, int see) {
-        if(!device.isEmpty()){
-            this.see += see;
+    public void see(Device device) {
+        if(device!=null){
+            this.see += device.getAddSee();
         }
     }
 
     @Override
-    public void force(String device, int force) {
-        if(!device.isEmpty()){
-            this.force += force;
+    public void force(Device device) {
+        if(device!=null){
+            this.force += device.getAddForce();
         }
     }
 
@@ -141,11 +162,21 @@ public class Hero extends Person implements Poderes{
             return this.invisible;
         }
     }
+    //Se sobreescribe el metodo para ocultar la identidad del super humano
     @Override
     public String getName(){
         return "No es posible revelar la identidad de los super humanos ";
     }
-    
+    @Override
+    public int mentalControl() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    //Metodo toString de la clase
+    @Override
+    public String toString(){
+        return "Super nombre: "+superName+"\nFuerza: "+force+"\nvisión: "+see+ "\nArtefacto: " +device;
+    }
+    //Metodo para teletransportarse con otro super humano
     private String teleportWithFriend(Hero hero, Point currentPoint){
         if(!this.canTeleport){
             return this.superName+" no tiene la capacidad para teletransportarse";
@@ -156,6 +187,7 @@ public class Hero extends Person implements Poderes{
                     currentPoint;
         }
     }
+    //metodo para teletranspotarse con una persona 
     public String teleportWithPerson(Person person, Point currentPoint){
         if(!this.canTeleport){
             return this.superName+" no puedo ayudar a "+person.getName()+" a escapar del peligro";
@@ -164,6 +196,7 @@ public class Hero extends Person implements Poderes{
             return this.superName+" a llevado a "+person.getName()+" a un lugar seguro";
         }
     }
+    //Metodo que le quita vida al super humano
     public void removeHealth(int damage){
         this.health -= damage;
     }
@@ -174,6 +207,7 @@ public class Hero extends Person implements Poderes{
             this.health += health;
         }
     }
+    //metodo que imprime que el super humano ha caido en conbate 
     public String killHero(){
         return this.superName+" a muerto en combate";
     }
