@@ -6,8 +6,6 @@ package Model;
 import java.awt.Point;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,9 +45,9 @@ public class Create {
     
     //Se clasifican las personas y se crean los heroes con aquellas que cumplen
     public void createHero(){
-        int cont =0;
-        ArrayList<Integer> indexRemove = new ArrayList<Integer>();
-        for(Person person: personList){
+        Person person = new Person();
+        for(int i = 0; i<personList.size();i++){
+            person = personList.get(i);
             if(clasificate(person)){
                 Device device = new Device("Gafas rayos x",20,100,20,20);
                 Point point = new Point(0,0);
@@ -57,12 +55,9 @@ public class Create {
                         person.getName(), "Super nombre", 1),person.getWeight()*10,20,device,
                         false,false,false,false,false,point, 100);
                 addToListHero(hero);
-                indexRemove.add(cont);
+                personList.remove(i);
             }
-            cont++;
-        }
-       removePerson(indexRemove);
-  
+        }  
     }
     //Clasifica las personas
     private boolean clasificate(Person person){
@@ -72,13 +67,6 @@ public class Create {
     //Agregar heroe a la lista
     private void addToListHero(Hero hero){
         heroesList.add(hero);
-    }
-    //Elimina a una persona de la lista
-    public void removePerson(ArrayList<Integer> index){
-        for(int reference:index){
-            JOptionPane.showMessageDialog(null, personList.get(reference).toString());
-            personList.remove(reference);
-        }
     }
     //Imprime la lista de heroes
     public String printHeroes(){

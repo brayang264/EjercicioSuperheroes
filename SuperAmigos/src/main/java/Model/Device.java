@@ -15,10 +15,10 @@ public class Device {
     private int addForce;
     private int damage;
     private int weaken;
-//metodos getter and setter
+//Metodos constructores
     public Device() {
     }
-
+//metodos getter and setter
     public Device(String description, int addSee, int addForce, int damage, int weaken) {
         this.description = description;
         this.addSee = addSee;
@@ -66,5 +66,6 @@ public class Device {
     public void setWeaken(int weaken) {
         this.weaken = weaken;
     }
+    //Metodos de la clase
     
 }
