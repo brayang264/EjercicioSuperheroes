@@ -102,6 +102,14 @@ public class Create {
         }
        return result;
     }
+    public ArrayList<Alfis> createAlfi(int n){
+       ArrayList<Alfis> alfisList = new ArrayList<>();
+       for(int i = 0; i <n; i++){
+           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(1685, 5986)), random.nextInt(20, 30));
+           alfisList.add(alfi);
+       }
+       return alfisList;
+    }
     //Metdoo para obetenr la lista de personas que se han registrado
     public ArrayList<Person> getArray(){
         return personList;
