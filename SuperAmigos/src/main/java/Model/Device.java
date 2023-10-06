@@ -14,17 +14,20 @@ public class Device {
     private int addSee;
     private int addForce;
     private int damage;
-    private int weaken;
+    private String weaken;
 //Metodos constructores
     public Device() {
     }
 //metodos getter and setter
-    public Device(String description, int addSee, int addForce, int damage, int weaken) {
+    public Device(String description, int addSee, int addForce, int damage, String weaken) {
         this.description = description;
         this.addSee = addSee;
         this.addForce = addForce;
-        this.damage = damage;
         this.weaken = weaken;
+    }
+    
+    public Device(String weaken){
+    this.weaken = weaken;
     }
 
     public String getDescription() {
@@ -51,19 +54,11 @@ public class Device {
         this.addForce = addForce;
     }
 
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public int getWeaken() {
+    public String getWeaken() {
         return weaken;
     }
 
-    public void setWeaken(int weaken) {
+    public void setWeaken(String weaken) {
         this.weaken = weaken;
     }
     //Metodos de la clase

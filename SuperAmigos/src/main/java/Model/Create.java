@@ -49,10 +49,18 @@ public class Create {
         for(int i = 0; i<personList.size();i++){
             person = personList.get(i);
             if(clasificate(person)){
-                Device device = new Device("Gafas rayos x",20,100,20,20);
+                ArrayList<Device> DeviceList = new ArrayList();
+                Device device1 = new Device("Gafas rayos UV",20,100,20,"Rayos UV");
+                Device device2 = new Device("Shampoo H&S", 0, 0, 0, "H&S");
+                Device device3 = new Device("Pistola de rayos Gamma", 10, 120, 10, "Rayos Gamma");
+                Device device4 = new Device("Cortadora a pulso de Vinagre", 0, 60, 10, "Vinagre");
+                DeviceList.add(device1);
+                DeviceList.add(device2);
+                DeviceList.add(device3);
+                DeviceList.add(device4);
                 Point point = new Point(0,0);
                 Hero hero = new Hero(JOptionPane.showInputDialog(null, "Ingrese el super nombre de "+
-                        person.getName(), "Super nombre", 1),person.getWeight()*10,20,device,
+                        person.getName(), "Super nombre", 1),person.getWeight()*10,20,DeviceList.get(random.nextInt(4)),
                         false,false,false,false,false,point, 100);
                 addToListHero(hero);
                 personList.remove(i);
@@ -93,7 +101,7 @@ public class Create {
     public ArrayList<Alfis> createAlfi(int n){
        ArrayList<Alfis> alfisList = new ArrayList<>();
        for(int i = 0; i <n; i++){
-           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(1685, 5986)), random.nextInt(20, 30));
+           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(1685, 5986)), random.nextInt(100)+350);
            alfisList.add(alfi);
        }
        return alfisList;
@@ -101,6 +109,9 @@ public class Create {
     //Metdoo para obetenr la lista de personas que se han registrado
     public ArrayList<Person> getArray(){
         return personList;
+    }
+    public ArrayList<Hero> getHeroArray(){
+        return heroesList;
     }
     //Metodo para obtener y crear (de ser necesario) la unica instancia de la clase
     public static Create getInstance(){
@@ -112,7 +123,7 @@ public class Create {
     public void randomPersons(int n){
         for(int i =0; i<n;i++){
             createPerson(getName(),getCountry(),random.nextInt(43)+18,random.nextBoolean(),
-                    random.nextBoolean(),getAddress(),random.nextInt(5),random.nextInt(141)+60,
+                    random.nextBoolean(),getAddress(),random.nextInt(5),random.nextInt(61)+60,
                     random.nextInt(51)+150,false,false);
         }
     }

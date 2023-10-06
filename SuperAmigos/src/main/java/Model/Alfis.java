@@ -11,12 +11,13 @@ package Model;
 public class Alfis {
     private String name;
     private float size;
+    private float health;
     private static final boolean FLIGHT = true;
-    private final float SUPERSTRENGHT = size*5;
-    private static  boolean VG_VUL = false;
-    private static  boolean HS_VUL = false;
-    private static  boolean GR_VUL = false;
-    private static  boolean UVR_VUL = false;
+    private float SUPERSTRENGHT = size*5;
+    private boolean VG_VUL = false;
+    private boolean HS_VUL = false;
+    private boolean GR_VUL = false;
+    private boolean UVR_VUL = false;
 
     public Alfis() {
     }
@@ -42,37 +43,58 @@ public class Alfis {
         this.size = size;
     }
 
-    public static boolean isVG_VUL() {
+    public float getSUPERSTRENGHT() {
+        return size*5;
+    }
+
+    public void setSUPERSTRENGHT(float SUPERSTRENGHT) {
+        this.SUPERSTRENGHT = SUPERSTRENGHT;
+    }
+    
+    
+
+    public float getHealth() {
+        return health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
+    }
+
+    public boolean isVG_VUL() {
         return VG_VUL;
     }
 
-    public static void setVG_VUL(boolean VG_VUL) {
-        Alfis.VG_VUL = VG_VUL;
+    public void setVG_VUL(boolean VG_VUL) {
+        this.VG_VUL = VG_VUL;
     }
 
-    public static boolean isHS_VUL() {
+    public boolean isHS_VUL() {
         return HS_VUL;
     }
 
-    public static void setHS_VUL(boolean HS_VUL) {
-        Alfis.HS_VUL = HS_VUL;
+    public void setHS_VUL(boolean HS_VUL) {
+        this.HS_VUL = HS_VUL;
     }
 
-    public static boolean isGR_VUL() {
+    public boolean isGR_VUL() {
         return GR_VUL;
     }
 
-    public static void setGR_VUL(boolean GR_VUL) {
-        Alfis.GR_VUL = GR_VUL;
+    public void setGR_VUL(boolean GR_VUL) {
+        this.GR_VUL = GR_VUL;
     }
 
-    public static boolean isUVR_VUL() {
+    public boolean isUVR_VUL() {
         return UVR_VUL;
     }
 
-    public static void setUVR_VUL(boolean UVR_VUL) {
-        Alfis.UVR_VUL = UVR_VUL;
+    public void setUVR_VUL(boolean UVR_VUL) {
+        this.UVR_VUL = UVR_VUL;
     }
+    
+
+    
     
     @Override
     public String toString() {

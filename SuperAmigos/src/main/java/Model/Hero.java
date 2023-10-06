@@ -1,4 +1,4 @@
-/*
+in/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -6,9 +6,6 @@ package Model;
 
 import Control.Poderes;
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author brayan.gomez1
@@ -23,9 +20,7 @@ public class Hero extends Person implements Poderes{
     private boolean canBeInvisible;
     private boolean fly;
     private boolean invisible;
-    private boolean canTeleport;
-    private Point position;
-    private int health;
+    private float health;
 
     //Constructores
     
@@ -40,8 +35,6 @@ public class Hero extends Person implements Poderes{
         this.canBeInvisible = canBeInvisible;
         this.fly = fly;
         this.invisible = invisible;
-        this.canTeleport = canTeleport;
-        this.position = position;
         this.health = health;
     }
 
@@ -79,6 +72,14 @@ public class Hero extends Person implements Poderes{
         this.device = device;
     }
 
+    public float getHealth() {
+        return health;
+    }
+
+    public void setHealth(float health) {
+        this.health = health;
+    }
+    
     public boolean isCanFly() {
         return canFly;
     }
@@ -102,22 +103,7 @@ public class Hero extends Person implements Poderes{
     public void setFly(boolean fly) {
         this.fly = fly;
     }
-
-    public boolean isCanTeleport() {
-        return canTeleport;
-    }
-
-    public void setCanTeleport(boolean canTeleport) {
-        this.canTeleport = canTeleport;
-    }
-
-    public Point getPosition() {
-        return position;
-    }
-
-    public void setPosition(Point position) {
-        this.position = position;
-    }
+    
     @Override
     public void see(Device device) {
         if(device!=null){
@@ -129,16 +115,6 @@ public class Hero extends Person implements Poderes{
     public void force(Device device) {
         if(device!=null){
             this.force += device.getAddForce();
-        }
-    }
-
-    @Override
-    public String teleport(Point currentPoint) {
-        if(!this.canTeleport){
-            return "El super humano actual no tiene la capacidad para teletransportarse";
-        }else{
-            this.position = currentPoint;
-            return this.superName+" se ha teletransportado a "+currentPoint;
         }
     }
 
@@ -177,39 +153,5 @@ public class Hero extends Person implements Poderes{
         return "Super nombre: "+superName+"\nFuerza: "+force+"\nvisión: "+see+ "\nArtefacto: " +device;
     }
     //Metodo para teletransportarse con otro super humano
-    private String teleportWithFriend(Hero hero, Point currentPoint){
-        if(!this.canTeleport){
-            return this.superName+" no tiene la capacidad para teletransportarse";
-        }else{
-            this.setPosition(currentPoint);
-            hero.setPosition(currentPoint);
-            return this.superName+" se ha teletransportado con "+hero.getSuperName()+" a las coordenadas "+
-                    currentPoint;
-        }
-    }
-    //metodo para teletranspotarse con una persona 
-    public String teleportWithPerson(Person person, Point currentPoint){
-        if(!this.canTeleport){
-            return this.superName+" no puedo ayudar a "+person.getName()+" a escapar del peligro";
-        }else{
-            this.position = currentPoint;
-            return this.superName+" a llevado a "+person.getName()+" a un lugar seguro";
-        }
-    }
-    //Metodo que le quita vida al super humano
-    public void removeHealth(int damage){
-        this.health -= damage;
-    }
-    public void regainHealth(int health){
-        if((this.health +=health) > 100){
-            this.health = 100;
-        }else{
-            this.health += health;
-        }
-    }
-    //metodo que imprime que el super humano ha caido en conbate 
-    public String killHero(){
-        return this.superName+" a muerto en combate";
-    }
 
 }

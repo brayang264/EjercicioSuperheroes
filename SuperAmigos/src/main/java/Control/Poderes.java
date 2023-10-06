@@ -18,7 +18,6 @@ public interface Poderes {
     //public boolean see(String artefacto); //no tiene atributos
     public void see(Device device);
     public void force(Device device);
-    public String teleport(Point currentPoint);
     public boolean inFly();
     public boolean isInvisible();
     public int mentalControl();

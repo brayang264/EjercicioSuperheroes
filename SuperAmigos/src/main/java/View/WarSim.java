@@ -6,7 +6,7 @@ package View;
 
 import Model.Alfis;
 import Model.Create;
-import Model.Person;
+import Model.Hero;
 import Model.WarMechanics;
 import java.util.ArrayList;
 
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class WarSim extends javax.swing.JPanel {
     private Create create = Create.getInstance();
     private static WarSim instance;
+    WarMechanics primer = new WarMechanics();
     public WarSim() {
         initComponents();
     }
@@ -93,7 +94,7 @@ public class WarSim extends javax.swing.JPanel {
 
         jLabel2.setText("Super Humanos");
 
-        jLabel3.setText("Invasores Alfii");
+        jLabel3.setText("Invasores Alfi");
 
         jLabel33.setText("Posición 1");
 
@@ -115,30 +116,35 @@ public class WarSim extends javax.swing.JPanel {
 
         jLabel42.setText("Posición 10");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox8ActionPerformed(evt);
             }
         });
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
+        jComboBox9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox9ActionPerformed(evt);
+            }
+        });
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
 
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atacar", "Usar Artefacto" }));
         jComboBox11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox11ActionPerformed(evt);
@@ -153,6 +159,11 @@ public class WarSim extends javax.swing.JPanel {
         });
 
         jButton1.setText("Simular batalla");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -170,18 +181,17 @@ public class WarSim extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
@@ -195,45 +205,25 @@ public class WarSim extends javax.swing.JPanel {
                                             .addComponent(jLabel12)
                                             .addComponent(jLabel13)
                                             .addComponent(jLabel5))
+                                        .addGap(113, 113, 113)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel42))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel34))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel35))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel36))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel37))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel38))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel39))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel40))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(113, 113, 113)
-                                                .addComponent(jLabel41))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(94, 94, 94)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(jLabel33)))))
+                                            .addComponent(jLabel42)
+                                            .addComponent(jLabel35)
+                                            .addComponent(jLabel36)
+                                            .addComponent(jLabel37)
+                                            .addComponent(jLabel38)
+                                            .addComponent(jLabel39)
+                                            .addComponent(jLabel40)
+                                            .addComponent(jLabel41)
+                                            .addComponent(jLabel33)
+                                            .addComponent(jLabel34)
+                                            .addComponent(jLabel3)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel6)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(180, Short.MAX_VALUE))))
+                        .addContainerGap(133, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,15 +233,11 @@ public class WarSim extends javax.swing.JPanel {
                         .addGap(74, 74, 74)
                         .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(startSimulation)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(startSimulation)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,9 +300,8 @@ public class WarSim extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startSimulationActionPerformed
-        ArrayList<Alfis> alfis = create.createAlfi(10);
-        ArrayList<Person> sP = create.getArray();
-        WarMechanics primer;
+        ArrayList<Alfis> alfis = create.createAlfi(20);
+        ArrayList<Hero> sP = create.getHeroArray();
         primer = new WarMechanics(sP, alfis);
         primer.FillPositions();
         jLabel5.setText(primer.heroToString().get(0));
@@ -350,12 +335,148 @@ public class WarSim extends javax.swing.JPanel {
     }//GEN-LAST:event_startSimulationActionPerformed
 
     private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
-        System.out.println("Hola");
+        
     }//GEN-LAST:event_jComboBox8ActionPerformed
 
     private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox11ActionPerformed
+
+    private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(!primer.EndofFightHeroes() || !primer.EndofFightAlfis()){
+            int index = 0;
+            if(jComboBox11.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox11.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 1;
+            if(jComboBox9.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox9.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 2;
+            if(jComboBox8.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox8.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 3;
+            if(jComboBox2.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox2.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 4;
+            if(jComboBox3.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox3.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 5;
+            if(jComboBox4.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox4.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 6;
+            if(jComboBox5.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox5.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 7;
+            if(jComboBox6.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox6.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 8;
+            if(jComboBox7.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox7.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            primer.Replace(index);
+            index = 9;
+            if(jComboBox10.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox10.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+
+            primer.ApplyVulnerabilities(primer.getAlfiSide());
+            
+
+            jLabel5.setText(primer.heroToString().get(0));
+            jLabel6.setText(primer.heroToString().get(1));
+            jLabel7.setText(primer.heroToString().get(2));
+            jLabel8.setText(primer.heroToString().get(3));
+            jLabel9.setText(primer.heroToString().get(4));
+            jLabel10.setText(primer.heroToString().get(5));
+            jLabel11.setText(primer.heroToString().get(6));
+            jLabel12.setText(primer.heroToString().get(7));
+            jLabel13.setText(primer.heroToString().get(8));
+            jLabel14.setText(primer.heroToString().get(9));
+
+            jLabel33.setText(primer.alfisToString().get(0));
+            jLabel34.setText(primer.alfisToString().get(1));
+            jLabel35.setText(primer.alfisToString().get(2));
+            jLabel36.setText(primer.alfisToString().get(3));
+            jLabel37.setText(primer.alfisToString().get(4));
+            jLabel38.setText(primer.alfisToString().get(5));
+            jLabel39.setText(primer.alfisToString().get(6));
+            jLabel40.setText(primer.alfisToString().get(7));
+            jLabel41.setText(primer.alfisToString().get(8));
+            jLabel42.setText(primer.alfisToString().get(9));
+        
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
