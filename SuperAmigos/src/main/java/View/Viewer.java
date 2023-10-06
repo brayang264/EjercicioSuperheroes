@@ -4,6 +4,7 @@
  */
 package View;
 import Model.Create;
+import Model.Validate;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Viewer extends javax.swing.JFrame {
 private static Viewer instance;
+private Validate validate = new Validate();
 private Create create = Create.getInstance();
     /**
      * Creates new form Viewer
@@ -132,7 +134,7 @@ private Create create = Create.getInstance();
 
     private void createHeroesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createHeroesActionPerformed
         create.createHero();
-        JOptionPane.showMessageDialog(null,create.printHeroes(), "Lista de heroes", 1);
+        validate.print("Se han creado los siguientes superhumanos\n"+create.printHeroes());
     }//GEN-LAST:event_createHeroesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

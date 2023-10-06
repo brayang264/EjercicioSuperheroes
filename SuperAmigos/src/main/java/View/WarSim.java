@@ -8,11 +8,13 @@ import Model.Alfis;
 import Model.Create;
 import Model.Hero;
 import Model.WarMechanics;
+import Model.Validate;
 import java.util.ArrayList;
 
 
 public class WarSim extends javax.swing.JPanel {
     private Create create = Create.getInstance();
+    private Validate validate = new Validate();
     private static WarSim instance;
     WarMechanics primer = new WarMechanics();
     public WarSim() {
@@ -302,6 +304,10 @@ public class WarSim extends javax.swing.JPanel {
     private void startSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startSimulationActionPerformed
         ArrayList<Alfis> alfis = create.createAlfi(20);
         ArrayList<Hero> sP = create.getHeroArray();
+        if(sP.size()<20){
+            validate.print("No se han creado suficientes super humanos, porfavor cree un minimo de 20");
+            return;
+        }
         primer = new WarMechanics(sP, alfis);
         primer.FillPositions();
         jLabel5.setText(primer.heroToString().get(0));

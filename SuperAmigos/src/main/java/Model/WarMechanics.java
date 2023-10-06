@@ -135,7 +135,8 @@ public class WarMechanics {
         Iterator<Hero> it = this.heroes1.listIterator(9);
         if(heroSide.get(index).getHealth() <= 0 && it.hasNext()){
                 deadHero.add(heroSide.get(index).getSuperName());
-                System.out.println(it.next().getSuperName());
+                //System.out.println("------------------"+heroSide.get(index).getSuperName()+"----------------");
+                //System.out.println("------------------"+it.next().getSuperName()+"----------------");
                 heroSide.set(heroSide.indexOf(heroSide.get(index)), it.next());
             }
         System.out.println(deadHero);
@@ -177,12 +178,6 @@ public class WarMechanics {
     public ArrayList<Alfis> getAlfiSide() {
         return alfiSide;
     }
-    
-    
-    
-   
-    
-    
     
     }
   
