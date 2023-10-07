@@ -37,19 +37,22 @@ public class WarMechanics {
     }
     // Inicializa los vectores en 10 posiciones de sus respectivas arrayLists
     // hace uso de los arrays state1 y state 2 para visualizar un estado del personaje, y establece la vida de cada uno 
-    public void FillPositions (){
-        
+    public void fillPositions (){
+        int rStart = 10;
+        int rEnd = 28%20 + 10;
+        int squad2Start = rEnd + 1;
+        int squad2End = squad2Start + 10;
+        int r2Start = squad2End + 1;
+        int r2End = heroes1.size();
+    
         for(int i = 0; i < 10; i++){
             heroSide.add(heroes1.get(i));
             alfiSide.add(alfis.get(i));
             state1.add("☺");
             state2.add("☺");
             heroSide.get(i).setHealth(100);
-            alfiSide.get(i).setHealth(100);
-            
-            
+            alfiSide.get(i).setHealth(100);  
         }
-        
         for (int i = 10; i < heroes1.size(); i++) {
             reinforcements1.add(heroes1.get(i));
         }
@@ -85,7 +88,7 @@ public class WarMechanics {
         return labelHero ;
     }
     // genera el evento del ataque, el cual está condicionado a fallar en un 10% contra enemigos voladores
-    public void AttackAction(Hero atacante, Alfis defensor){
+    public void attackAction(Hero atacante, Alfis defensor){
         Random random = new Random();
         Double probabilities = random.nextDouble();
         if (probabilities > 0.1 && atacante.getHealth() > 0){
@@ -95,62 +98,62 @@ public class WarMechanics {
     }
     // polimorfismo usado para cuando el alfi ataca a un superhumanos, se tiene es cuenta si el superhumano posee
     // habilidades de vuelo e invisibilidad
-    public void AttackAction(Alfis atacante, Hero defensor){
+    public void attackAction(Alfis atacante, Hero defensor){
         Random random = new Random();
         Double probabilities = random.nextDouble();
         if (defensor.inFly() && probabilities > 0.1 && atacante.getHealth() > 0){
-            defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
         }
         else if (defensor.isInvisible() && probabilities > 0.95 && atacante.getHealth() > 0){
-            defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
         }
         else if (atacante.getHealth() > 0){
-            defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
         }
             
             
     }
     // evento que se genera cuando en la combox se elige la opción de usar artefacto
     // contiene condicionales para activar las debilidades de los alfis, según el atributo "weaken" del artefacto
-    public void DeviceAction(Hero atacante, Alfis defensor){
+    public void deviceAction(Hero atacante, Alfis defensor){
         if ("Rayos UV".equals(atacante.getDevice().getWeaken())){
-            defensor.setUVR_VUL(true);
+            defensor.setultraViolVul(true);
         }
         else if ("Vinagre".equals(atacante.getDevice().getWeaken())){
-            defensor.setVG_VUL(true);
+            defensor.setvinagerVul(true);
         }
         else if ("Rayos Gamma".equals(atacante.getDevice().getWeaken())){
-            defensor.setGR_VUL(true);
+            defensor.setgammaRVul(true);
         }
         else if ("H&S".equals(atacante.getDevice().getWeaken())){
-            defensor.setHS_VUL(true);
+            defensor.sethSVul(true);
         }
     }
     // método que cuando se activa genera un efecto si se ha activado la vulnerabilidad del alfi
-    public void ApplyVulnerabilities(ArrayList<Alfis> alfis){
+    public void applyVulnerabilities(ArrayList<Alfis> alfis){
         for(Alfis elements: alfis){
-            if (elements.isGR_VUL()){
+            if (elements.isgammaRVul()){
                 elements.setHealth(elements.getHealth() - 100 > 0 ? elements.getHealth() - 100 : 0 );
-                elements.setGR_VUL(false);
+                elements.setgammaRVul(false);
             }
-            else if(elements.isUVR_VUL()){
-                elements.setSUPERSTRENGHT(elements.getSUPERSTRENGHT()/5);
-                elements.setUVR_VUL(false);
+            else if(elements.isultraViolVul()){
+                elements.setsuperStrenght(elements.getsuperStrenght()/5);
+                elements.setultraViolVul(false);
             }
-            else if(elements.isVG_VUL()){
+            else if(elements.isvinagerVul()){
                 elements.setHealth((int) (elements.getHealth() - 15 > 0 ? elements.getHealth() - 15 : 0 ));
             }
-            else if(elements.isHS_VUL()){
+            else if(elements.ishSVul()){
                 elements.setHealth(elements.getHealth() - 100 > 0 ? elements.getHealth() - 100 : 0);
-                elements.setHS_VUL(false);
+                elements.sethSVul(false);
             }
         }
     }
     // Método que permite rellenar las posiciones cuando se cuenta con un escuadrón de más de 10 Super Humanos
-    public void Replace(){
+    public void replace(){
        Iterator<Hero> it = reinforcements1.iterator();
        int count = 0;
-        if (it.hasNext() && !EndofFight()) {
+        if (it.hasNext() && !endFight()) {
             for (Hero elements : heroSide) {
             if ((elements.getHealth() <= 0) &&(alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)) {
                 count = heroSide.indexOf(elements);
@@ -162,7 +165,7 @@ public class WarMechanics {
         }
     }
     // Método para identificar cuando todos los combatientes de uno u otro bando están muertos, y así terminar la ronda
-    public boolean EndofFight(){
+    public boolean endFight(){
         boolean end = true;
             for(Hero elements: heroSide){
                 if((elements.getHealth() > 0) || (alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)){

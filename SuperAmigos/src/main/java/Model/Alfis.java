@@ -12,12 +12,12 @@ public class Alfis {
     private String name;
     private float size;
     private int health;
-    private static final boolean FLIGHT = true;
-    private float SUPERSTRENGHT = size*5;
-    private boolean VG_VUL = false;
-    private boolean HS_VUL = false;
-    private boolean GR_VUL = false;
-    private boolean UVR_VUL = false;
+    private static final boolean flight = true;
+    private float superStrenght = size*5;
+    private boolean vinagerVul = false;  // Se inicializan las vulnerabilidades en false, para que al interactuar con un artefacto este las modifica a true
+    private boolean hSVul = false;
+    private boolean gammaRVul = false;
+    private boolean ultraViolVul = false;
 
     public Alfis() {
     }
@@ -43,12 +43,12 @@ public class Alfis {
         this.size = size;
     }
 
-    public float getSUPERSTRENGHT() {
+    public float getsuperStrenght() {
         return size*5;
     }
 
-    public void setSUPERSTRENGHT(float SUPERSTRENGHT) {
-        this.SUPERSTRENGHT = SUPERSTRENGHT;
+    public void setsuperStrenght(float superStrenght) {
+        this.superStrenght = superStrenght;
     }
     
     
@@ -61,36 +61,36 @@ public class Alfis {
         this.health = health;
     }
 
-    public boolean isVG_VUL() {
-        return VG_VUL;
+    public boolean isvinagerVul() {
+        return vinagerVul;
     }
 
-    public void setVG_VUL(boolean VG_VUL) {
-        this.VG_VUL = VG_VUL;
+    public void setvinagerVul(boolean vinagerVul) {
+        this.vinagerVul = vinagerVul;
     }
 
-    public boolean isHS_VUL() {
-        return HS_VUL;
+    public boolean ishSVul() {
+        return hSVul;
     }
 
-    public void setHS_VUL(boolean HS_VUL) {
-        this.HS_VUL = HS_VUL;
+    public void sethSVul(boolean hSVul) {
+        this.hSVul = hSVul;
     }
 
-    public boolean isGR_VUL() {
-        return GR_VUL;
+    public boolean isgammaRVul() {
+        return gammaRVul;
     }
 
-    public void setGR_VUL(boolean GR_VUL) {
-        this.GR_VUL = GR_VUL;
+    public void setgammaRVul(boolean gammaRVul) {
+        this.gammaRVul = gammaRVul;
     }
 
-    public boolean isUVR_VUL() {
-        return UVR_VUL;
+    public boolean isultraViolVul() {
+        return ultraViolVul;
     }
 
-    public void setUVR_VUL(boolean UVR_VUL) {
-        this.UVR_VUL = UVR_VUL;
+    public void setultraViolVul(boolean ultraViolVul) {
+        this.ultraViolVul = ultraViolVul;
     }
     
 
@@ -98,7 +98,7 @@ public class Alfis {
     
     @Override
     public String toString() {
-        return "Alfis{" + "name=" + name + ", size=" + size + ", SUPERSTRENGHT=" + SUPERSTRENGHT + '}';
+        return "Alfis{" + "name=" + name + ", size=" + size + ", superStrenght=" + superStrenght + '}';
     }
     
 }

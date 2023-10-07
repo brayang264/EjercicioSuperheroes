@@ -340,7 +340,7 @@ public class WarSim extends javax.swing.JPanel {
             return;
         }
         primer = new WarMechanics(sP, alfis);
-        primer.FillPositions();
+        primer.fillPositions();
         showLabels();
         
         
@@ -363,104 +363,7 @@ public class WarSim extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!primer.EndofFight()){
-            int index = 0;
-            if(jComboBox11.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox11.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 1;
-            if(jComboBox9.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox9.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            };
-            index = 2;
-            if(jComboBox8.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox8.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 3;
-            if(jComboBox2.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox2.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 4;
-            if(jComboBox3.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox3.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 5;
-            if(jComboBox4.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox4.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 6;
-            if(jComboBox5.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox5.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 7;
-            if(jComboBox6.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox6.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 8;
-            if(jComboBox7.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox7.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            index = 9;
-            if(jComboBox10.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
-                primer.AttackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-            else if (jComboBox10.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
-                primer.DeviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
-                primer.AttackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
-            }
-
-            primer.ApplyVulnerabilities(primer.getAlfiSide());
-            showLabels();
-        
-        }
-        
-        
+        updateInAttack();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -477,7 +380,7 @@ public class WarSim extends javax.swing.JPanel {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
 
-        primer.Replace();
+        primer.replace();
         showLabels();
         
     }//GEN-LAST:event_jToggleButton1ActionPerformed
@@ -547,6 +450,104 @@ public void showLabels(){
             jLabel40.setText(primer.alfisToString().get(7));
             jLabel41.setText(primer.alfisToString().get(8));
             jLabel42.setText(primer.alfisToString().get(9));
+}
+public void updateInAttack(){
+    if(!primer.endFight()){
+            int index = 0;
+            if(jComboBox11.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox11.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 1;
+            if(jComboBox9.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox9.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            };
+            index = 2;
+            if(jComboBox8.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox8.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 3;
+            if(jComboBox2.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox2.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 4;
+            if(jComboBox3.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox3.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 5;
+            if(jComboBox4.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox4.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 6;
+            if(jComboBox5.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox5.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 7;
+            if(jComboBox6.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox6.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 8;
+            if(jComboBox7.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox7.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            index = 9;
+            if(jComboBox10.getSelectedItem().equals("Atacar") && !primer.isdead(primer.getAlfiSide().get(index)) && !primer.isdead(primer.getHeroSide().get(index)) ){
+                primer.attackAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+            else if (jComboBox10.getSelectedItem().equals("Usar Artefacto") && !primer.isdead(primer.getHeroSide().get(index)) && !primer.isdead(primer.getAlfiSide().get(index))){
+                primer.deviceAction(primer.getHeroSide().get(index), primer.getAlfiSide().get(index));
+                primer.attackAction(primer.getAlfiSide().get(index), primer.getHeroSide().get(index));
+            }
+
+            primer.applyVulnerabilities(primer.getAlfiSide());
+            showLabels();
+        
+        }
 }
 }
 
