@@ -101,7 +101,7 @@ public class Create {
     public ArrayList<Alfis> createAlfi(int n){
        ArrayList<Alfis> alfisList = new ArrayList<>();
        for(int i = 0; i <n; i++){
-           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(1685, 5986)), random.nextInt(100)+350);
+           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(100)), random.nextInt(100)+350);
            alfisList.add(alfi);
        }
        return alfisList;

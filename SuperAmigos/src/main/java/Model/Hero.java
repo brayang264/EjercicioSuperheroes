@@ -20,7 +20,7 @@ public class Hero extends Person implements Poderes{
     private boolean canBeInvisible;
     private boolean fly;
     private boolean invisible;
-    private float health;
+    private int health;
 
     //Constructores
     
@@ -72,11 +72,11 @@ public class Hero extends Person implements Poderes{
         this.device = device;
     }
 
-    public float getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(float health) {
+    public void setHealth(int health) {
         this.health = health;
     }
     

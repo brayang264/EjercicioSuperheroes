@@ -11,7 +11,7 @@ package Model;
 public class Alfis {
     private String name;
     private float size;
-    private float health;
+    private int health;
     private static final boolean FLIGHT = true;
     private float SUPERSTRENGHT = size*5;
     private boolean VG_VUL = false;
@@ -53,11 +53,11 @@ public class Alfis {
     
     
 
-    public float getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(float health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 

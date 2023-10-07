@@ -54,7 +54,7 @@ public class WarMechanics {
         for(int i = 0; i < 10; i++){
             labelAlfi.add(String.valueOf(alfiSide.get(i).getName())+"["+String.valueOf(alfiSide.get(i).getHealth())+"]"+"\t"+state2.get(i));
             if(alfiSide.get(i).getHealth() <= 0){
-                state2.set(i, "☠");
+                state2.set(i, "😔");
             }
         }
         
@@ -66,7 +66,7 @@ public class WarMechanics {
         for(int i = 0; i < 10; i++){
             labelHero.add(String.valueOf(heroSide.get(i).getSuperName())+"["+String.valueOf(heroSide.get(i).getHealth())+"]"+"\t"+state1.get(i));
         if(heroSide.get(i).getHealth() <= 0){
-                state1.set(i, "☠");
+                state1.set(i, "😔");
             }
         }
         return labelHero ;
@@ -76,7 +76,7 @@ public class WarMechanics {
         Random random = new Random();
         Double probabilities = random.nextDouble();
         if (probabilities > 0.1){
-            defensor.setHealth((int)(defensor.getHealth()- atacante.getForce()/100));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getForce()/100) > 0 ? (defensor.getHealth()- atacante.getForce()/100) : 0));
         }
         
     }
@@ -86,13 +86,13 @@ public class WarMechanics {
         Random random = new Random();
         Double probabilities = random.nextDouble();
         if (defensor.inFly() && probabilities > 0.1){
-            defensor.setHealth((int)(defensor.getHealth()- atacante.getSUPERSTRENGHT()/100));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
         }
         else if (defensor.isInvisible() && probabilities > 0.95){
-            defensor.setHealth((int)(defensor.getHealth()- atacante.getSUPERSTRENGHT()/100));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
         }
         else{
-            defensor.setHealth((int)(defensor.getHealth()- atacante.getSUPERSTRENGHT()/100));
+            defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
         }
             
             
@@ -117,16 +117,19 @@ public class WarMechanics {
     public void ApplyVulnerabilities(ArrayList<Alfis> alfis){
         for(Alfis elements: alfis){
             if (elements.isGR_VUL()){
-                elements.setHealth(elements.getHealth() - 30);
+                elements.setHealth(elements.getHealth() - 100 > 0 ? elements.getHealth() - 100 : 0 );
+                elements.setGR_VUL(false);
             }
             else if(elements.isUVR_VUL()){
-                elements.setSUPERSTRENGHT(elements.getSUPERSTRENGHT()/2);
+                elements.setSUPERSTRENGHT(elements.getSUPERSTRENGHT()/5);
+                elements.setUVR_VUL(false);
             }
             else if(elements.isVG_VUL()){
-                elements.setHealth((float) (elements.getHealth()*0.85));
+                elements.setHealth((int) (elements.getHealth() - 15 > 0 ? elements.getHealth() - 15 : 0 ));
             }
             else if(elements.isHS_VUL()){
-                elements.setHealth(elements.getHealth() - 100);
+                elements.setHealth(elements.getHealth() - 100 > 0 ? elements.getHealth() - 100 : 0);
+                elements.setHS_VUL(false);
             }
         }
     }
