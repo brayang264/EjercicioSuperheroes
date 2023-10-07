@@ -7,6 +7,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.util.Random;
  */
 public class WarMechanics {
     private ArrayList<Hero> heroes1;
+    private ArrayList<Hero> reinforcements1 = new ArrayList();
     private ArrayList<Alfis> alfis;
     private ArrayList<String> state1 = new ArrayList();
     private ArrayList<String> state2 = new ArrayList();
@@ -37,14 +39,18 @@ public class WarMechanics {
     public void FillPositions (){
         
         for(int i = 0; i < 10; i++){
-            heroSide.add(this.heroes1.get(i));
-            alfiSide.add(this.alfis.get(i));
+            heroSide.add(heroes1.get(i));
+            alfiSide.add(alfis.get(i));
             state1.add("☺");
             state2.add("☺");
             heroSide.get(i).setHealth(100);
             alfiSide.get(i).setHealth(100);
             
             
+        }
+        
+        for (int i = 10; i < heroes1.size(); i++) {
+            reinforcements1.add(heroes1.get(i));
         }
     
     }
@@ -56,6 +62,9 @@ public class WarMechanics {
             if(alfiSide.get(i).getHealth() <= 0){
                 state2.set(i, "😔");
             }
+            else{
+            state1.set(i, "☺");
+        }
         }
         
         return labelAlfi ;
@@ -68,6 +77,9 @@ public class WarMechanics {
         if(heroSide.get(i).getHealth() <= 0){
                 state1.set(i, "😔");
             }
+        else{
+            state1.set(i, "☺");
+        }
         }
         return labelHero ;
     }
@@ -75,7 +87,7 @@ public class WarMechanics {
     public void AttackAction(Hero atacante, Alfis defensor){
         Random random = new Random();
         Double probabilities = random.nextDouble();
-        if (probabilities > 0.1){
+        if (probabilities > 0.1 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getForce()/100) > 0 ? (defensor.getHealth()- atacante.getForce()/100) : 0));
         }
         
@@ -85,13 +97,13 @@ public class WarMechanics {
     public void AttackAction(Alfis atacante, Hero defensor){
         Random random = new Random();
         Double probabilities = random.nextDouble();
-        if (defensor.inFly() && probabilities > 0.1){
+        if (defensor.inFly() && probabilities > 0.1 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
         }
-        else if (defensor.isInvisible() && probabilities > 0.95){
+        else if (defensor.isInvisible() && probabilities > 0.95 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
         }
-        else{
+        else if (atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) > 0 ? (defensor.getHealth()- atacante.getSUPERSTRENGHT()/100) : 0));
         }
             
@@ -134,37 +146,43 @@ public class WarMechanics {
         }
     }
     // Método que permite rellenar las posiciones cuando se cuenta con un escuadrón de más de 10 Super Humanos
-    public void Replace(int index){
-        Iterator<Hero> it = this.heroes1.listIterator(9);
-        if(heroSide.get(index).getHealth() <= 0 && it.hasNext()){
-                deadHero.add(heroSide.get(index).getSuperName());
-                //System.out.println("------------------"+heroSide.get(index).getSuperName()+"----------------");
-                //System.out.println("------------------"+it.next().getSuperName()+"----------------");
-                heroSide.set(heroSide.indexOf(heroSide.get(index)), it.next());
+    public void Replace(){
+       Iterator<Hero> it = reinforcements1.iterator();
+       int count = 0;
+        if (it.hasNext()) {
+            for (Hero elements : heroSide) {
+            if ((elements.getHealth() <= 0) &&(alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)) {
+                count = heroSide.indexOf(elements);
+                break;
             }
-        System.out.println(deadHero);
+        }
+            deadHero.add(heroSide.get(count).getSuperName());
+            heroSide.set(heroSide.indexOf(heroSide.get(count)), it.next());
+            it.remove();
+        }
+        else if (!it.hasNext() && !EndofFight()) {
+            for (Hero elements : heroSide) {
+                if ((elements.getHealth() <= 0) &&(alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)) {
+                    count = heroSide.indexOf(elements);
+                }
+            }
+            deadHero.add(heroSide.get(count).getSuperName());
+        }
+        System.out.println(reinforcements1.size());
+       System.out.println(deadHero);
     }
     // Método para identificar cuando todos los combatientes de uno u otro bando están muertos, y así terminar la ronda
-    public boolean EndofFightHeroes(){
+    public boolean EndofFight(){
         boolean end = true;
             for(Hero elements: heroSide){
-                if(elements.getHealth() > 0){
+                if((elements.getHealth() > 0) || (alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)){
                     end = false;
                     return end;
                 }
             }
         return end;
     }
-    public boolean EndofFightAlfis(){
-        boolean end = true;
-            for(Alfis elements: alfiSide){
-                if(elements.getHealth() > 0){
-                    end = false;
-                    return end;
-                }
-            }
-        return end;
-    }
+    
     
     public Boolean isdead(Hero hero){
     return hero.getHealth() <= 0;
