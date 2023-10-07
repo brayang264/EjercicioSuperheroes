@@ -27,30 +27,67 @@ public class Create {
     private ArrayList<Person> personList = new ArrayList<Person>();
     //ArrayList para guardar los superhumanos
     private ArrayList<Hero> heroesList = new ArrayList<Hero>();
+    //ArrayList de artefactos
+    private ArrayList<Device> DeviceList = new ArrayList();
+    //ArraysList para crear nombres de heroes aleatoriamente
+    private ArrayList<String> heroName = new ArrayList<String>();
+    private ArrayList<String> heroName2 =  new ArrayList<String>();
+    //Contador para generar personas random (entre 10 y 20 personas) sin hijos y solteros
+    private int cont = random.nextInt(11)+10;
     //El constructor es privado para que solo pueda acceder a través del metodo getInstace y asi solo crear una instancas de la clase
     private Create(){
         inicializeNames();
         inicializeSurname();
         inicializeCountries();
+        addDevices();
+        addHeroName();
     }
     //Se crea la persona y se agrega a la lista
     public void createPerson(String name, String country, float age, boolean availability, boolean single,
             String address, float scaleOfEvil, float weight, float height, boolean physicalProblems,
-            boolean mentalProblems){
+            boolean mentalProblems, int numOfChild){
         Person person = new Person(name,country, age, availability, single, address, scaleOfEvil, weight,
-        height, physicalProblems, mentalProblems);
+        height, physicalProblems, mentalProblems,numOfChild);
         personList.add(person);
         
     }
     
     //Se clasifican las personas y se crean los heroes con aquellas que cumplen
     public void createHero(){
-        Person person = new Person();
+        Person person;
         for(int i = 0; i<personList.size();i++){
             person = personList.get(i);
             if(clasificate(person)){
-                ArrayList<Device> DeviceList = new ArrayList();
-                Device device1 = new Device("Gafas rayos UV",20,100,20,"Rayos UV");
+                Point point = new Point(0,0);
+                Hero hero = new Hero(JOptionPane.showInputDialog(null, "Ingrese el super nombre de "+
+                        person.getName(), "Super nombre", 1),person.getWeight()*10,20,DeviceList.get(random.nextInt(4)),
+                        false,false,false,false,false,point, 100,person);
+                addToListHero(hero);
+                personList.remove(person);
+                i--;
+            }
+        }  
+    }
+
+    //Genera herores con nombres aleatorios
+    public void createHeroRandom(){
+        Person person;
+        for(int i = 0; i<personList.size();i++){
+            person = personList.get(i);
+            if(clasificate(person)){
+                Point point = new Point(0,0);
+                Hero hero = new Hero(heroName.get(random.nextInt(29))+" "+
+                        heroName2.get(random.nextInt(29)),person.getWeight()*10,20,DeviceList.get(random.nextInt(4)),
+                        false,false,false,false,false,point, 100,person);
+                addToListHero(hero);
+                personList.remove(person);
+                i--;
+            }
+        }
+    }
+    //Crea la liista de artefactos que los heroes pueden tener
+    private void addDevices(){
+        Device device1 = new Device("Gafas rayos UV",20,100,20,"Rayos UV");
                 Device device2 = new Device("Shampoo H&S", 0, 0, 0, "H&S");
                 Device device3 = new Device("Pistola de rayos Gamma", 10, 120, 10, "Rayos Gamma");
                 Device device4 = new Device("Cortadora a pulso de Vinagre", 0, 60, 10, "Vinagre");
@@ -58,18 +95,10 @@ public class Create {
                 DeviceList.add(device2);
                 DeviceList.add(device3);
                 DeviceList.add(device4);
-                Point point = new Point(0,0);
-                Hero hero = new Hero(JOptionPane.showInputDialog(null, "Ingrese el super nombre de "+
-                        person.getName(), "Super nombre", 1),person.getWeight()*10,20,DeviceList.get(random.nextInt(4)),
-                        false,false,false,false,false,point, 100);
-                addToListHero(hero);
-                personList.remove(i);
-            }
-        }  
     }
     //Clasifica las personas
     private boolean clasificate(Person person){
-        return((person.getScaleOfEvil()<=2)&&person.isAvailability()&&person.isSingle()&&!person.getMentalProblems()
+        return((person.getScaleOfEvil()<=2)&&person.isAvailability()&&!person.getMentalProblems()
                 &&!person.getPhysicalProblems());
     }
     //Agregar heroe a la lista
@@ -79,7 +108,7 @@ public class Create {
     //Imprime la lista de heroes
     public String printHeroes(){
         if(heroesList.size()==0){
-            return"No se han creado personas, primero creo personas para poder realizar la clasificación";
+            return"No se han creado personas.\nPrimero cree personas para poder realizar la clasificación";
         }
         String result="Hay "+heroesList.size()+" actualmente y son: \n------------\n";
         for(Hero hero: heroesList){
@@ -98,6 +127,7 @@ public class Create {
         }
        return result;
     }
+    //metodo para crear la lista de los alfis
     public ArrayList<Alfis> createAlfi(int n){
        ArrayList<Alfis> alfisList = new ArrayList<>();
        for(int i = 0; i <n; i++){
@@ -110,6 +140,7 @@ public class Create {
     public ArrayList<Person> getArray(){
         return personList;
     }
+    //Metodo para obtener la lista de los heroes
     public ArrayList<Hero> getHeroArray(){
         return heroesList;
     }
@@ -120,11 +151,19 @@ public class Create {
         }
         return instance;
     }
+    //Metodo para generar una persona random
     public void randomPersons(int n){
-        for(int i =0; i<n;i++){
-            createPerson(getName(),getCountry(),random.nextInt(43)+18,random.nextBoolean(),
+        for(int i =0; i<n;i++){ 
+            if(cont>0){
+                cont--;
+                createPerson(getName(),getCountry(),random.nextInt(43)+18,true,
+                    true,getAddress(),random.nextInt(2),random.nextInt(61)+60,
+                    random.nextInt(51)+150,false,false,0);
+                continue;
+            }
+            createPerson(getName(),getCountry(),random.nextInt(43)+18,true,
                     random.nextBoolean(),getAddress(),random.nextInt(5),random.nextInt(61)+60,
-                    random.nextInt(51)+150,false,false);
+                    random.nextInt(51)+150,false,false,random.nextInt(4)+1);
         }
     }
     //Obtiene un nombre al azar del array
@@ -236,6 +275,74 @@ public class Create {
         countries.add("Panamá");
         countries.add("Cuba");
         countries.add("República Dominicana");
+    }
+    //Inicia ambas listas para generar nombres de heroes aleatorios
+    private void addHeroName(){
+        // Agregar 30 nombres de animales, objetos y lugares al ArrayList
+        heroName.add("Tigre");
+        heroName.add("Espada");
+        heroName.add("Montaña");
+        heroName.add("Elefante");
+        heroName.add("Libro");
+        heroName.add("Bosque");
+        heroName.add("León");
+        heroName.add("Barco");
+        heroName.add("Playa");
+        heroName.add("Águila");
+        heroName.add("Reloj");
+        heroName.add("Cueva");
+        heroName.add("Zorro");
+        heroName.add("Avión");
+        heroName.add("Ciudad");
+        heroName.add("Lobo");
+        heroName.add("Escudo");
+        heroName.add("Desierto");
+        heroName.add("Ballena");
+        heroName.add("Martillo");
+        heroName.add("Volcán");
+        heroName.add("Jirafa");
+        heroName.add("Botella");
+        heroName.add("Selva");
+        heroName.add("Delfín");
+        heroName.add("Silla");
+        heroName.add("Pueblo");
+        heroName.add("Puma");
+        heroName.add("Espada");
+        heroName.add("Lago");
+        addHeroName2();
+    }
+    private void addHeroName2(){
+        // Agregar 30 nombres de colores, piedras preciosas o dioses griegos al ArrayList
+        heroName2.add("Rojo");
+        heroName2.add("Zafiro");
+        heroName2.add("Zeus");
+        heroName2.add("Azul");
+        heroName2.add("Esmeralda");
+        heroName2.add("Apolo");
+        heroName2.add("Verde");
+        heroName2.add("Diamante");
+        heroName2.add("Afrodita");
+        heroName2.add("Amarillo");
+        heroName2.add("Rubí");
+        heroName2.add("Hermes");
+        heroName2.add("Naranja");
+        heroName2.add("Topacio");
+        heroName2.add("Atenea");
+        heroName2.add("Violeta");
+        heroName2.add("Ópalo");
+        heroName2.add("Hades");
+        heroName2.add("Blanco");
+        heroName2.add("Cuarzo");
+        heroName2.add("Poseidón");
+        heroName2.add("Negro");
+        heroName2.add("Amatista");
+        heroName2.add("Deméter");
+        heroName2.add("Rosa");
+        heroName2.add("Granate");
+        heroName2.add("Afrodita");
+        heroName2.add("Gris");
+        heroName2.add("Turquesa");
+        heroName2.add("Ares");
     }
     //Genera correos aleatorios
     private String getAddress(){

@@ -9,6 +9,7 @@ import java.awt.Point;
 /**
  *
  * @author brayan.gomez1
+ * 
  */
 public class Hero extends Person implements Poderes{
     //Campos de la clase
@@ -21,12 +22,14 @@ public class Hero extends Person implements Poderes{
     private boolean fly;
     private boolean invisible;
     private int health;
-
     //Constructores
     
     public Hero(String superName, float force, int see, Device device,
             boolean canFly, boolean canBeInvisible, boolean fly, boolean invisible, 
-            boolean canTeleport, Point position, int health) {
+            boolean canTeleport, Point position, int health,Person person) {
+        super(person.getName(),person.getCountry(),person.getAge(),person.isAvailability(),person.isSingle()
+        ,person.getAddress(),person.getScaleOfEvil(),person.getHeight(),person.getWeight(),person.getPhysicalProblems(),
+        person.getMentalProblems(),person.getNumOfChild());
         this.superName = superName;
         this.force = force;
         this.see = see;
@@ -110,7 +113,6 @@ public class Hero extends Person implements Poderes{
             this.see += device.getAddSee();
         }
     }
-
     @Override
     public void force(Device device) {
         if(device!=null){
@@ -150,7 +152,8 @@ public class Hero extends Person implements Poderes{
     //Metodo toString de la clase
     @Override
     public String toString(){
-        return "Super nombre: "+superName+"\nFuerza: "+force+"\nvisión: "+see+ "\nArtefacto: " +device;
+        return "Super nombre: "+superName+"\nFuerza: "+force+"\nvisión: "+see+ "\nArtefacto: " +device.getDescription()
+                +"\nSoltero: "+this.isSingle()+"\nCant Hijos: "+this.getNumOfChild();
     }
     //Metodo para teletransportarse con otro super humano
 
