@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
+import Model.Validate;
 
 /**
  *
@@ -22,7 +23,7 @@ public class WarMechanics {
     private ArrayList<Hero>  heroSide = new ArrayList();
     private ArrayList<Alfis> alfiSide = new ArrayList();
     private ArrayList<String> deadHero = new ArrayList();
-    
+    private Validate validate = new Validate();
     public WarMechanics(){
     }
 
@@ -149,27 +150,16 @@ public class WarMechanics {
     public void Replace(){
        Iterator<Hero> it = reinforcements1.iterator();
        int count = 0;
-        if (it.hasNext()) {
+        if (it.hasNext() && !EndofFight()) {
             for (Hero elements : heroSide) {
             if ((elements.getHealth() <= 0) &&(alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)) {
                 count = heroSide.indexOf(elements);
                 break;
             }
         }
-            deadHero.add(heroSide.get(count).getSuperName());
             heroSide.set(heroSide.indexOf(heroSide.get(count)), it.next());
             it.remove();
         }
-        else if (!it.hasNext() && !EndofFight()) {
-            for (Hero elements : heroSide) {
-                if ((elements.getHealth() <= 0) &&(alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)) {
-                    count = heroSide.indexOf(elements);
-                }
-            }
-            deadHero.add(heroSide.get(count).getSuperName());
-        }
-        System.out.println(reinforcements1.size());
-       System.out.println(deadHero);
     }
     // Método para identificar cuando todos los combatientes de uno u otro bando están muertos, y así terminar la ronda
     public boolean EndofFight(){
@@ -181,6 +171,15 @@ public class WarMechanics {
                 }
             }
         return end;
+    }
+    
+    public ArrayList<String> CombatDeaths(){
+        for (Hero elements : heroes1) {
+            if (elements.getHealth() == 0) {
+                deadHero.add(elements.getSuperName());
+            }
+        }
+        return deadHero;
     }
     
     
