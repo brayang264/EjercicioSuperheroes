@@ -4,7 +4,7 @@
  */
 package View;
 import Model.Create;
-import Model.Validate;
+import Control.Validate;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
@@ -133,8 +133,20 @@ private Create create = Create.getInstance();
     }//GEN-LAST:event_registerPersonsActionPerformed
 
     private void createHeroesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createHeroesActionPerformed
-        create.createHero();
-        validate.print("Se han creado los siguientes superhumanos\n"+create.printHeroes());
+        if(create.getArray().size() ==0){
+            JOptionPane.showMessageDialog(null, "No se han creado personas, primero cree un minimo de \n20"
+                    + " personas","Alerta",1);
+            return;
+        }
+        int answer = JOptionPane.showConfirmDialog(null,"¿Desea agregar los super nombres manualmente?", "Pregunta", 1);
+        if(answer == JOptionPane.YES_OPTION){
+            create.createHero();
+            validate.print(create.printHeroes());
+        }else{
+            create.createHeroRandom();
+            validate.print(create.printHeroes());
+        }
+        
     }//GEN-LAST:event_createHeroesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

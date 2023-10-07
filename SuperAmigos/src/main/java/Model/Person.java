@@ -26,10 +26,12 @@ public class Person {
     private float height;
     private boolean physicalProblems;
     private boolean mentalProblems;
+    private double numOfChild;
     //constructor
     //se puede crear con todos o con cada uno
 
-    public Person(String name, String country, float age, boolean availability, boolean single, String address, float scaleOfEvil, float weight, float height, boolean physicalProblems, boolean mentalProblems) {
+    public Person(String name, String country, float age, boolean availability, boolean single, String address, float scaleOfEvil, float weight, float height, boolean physicalProblems, boolean mentalProblems
+    ,double numOfChild) {
         this.name = name;
         this.country = country;
         this.age = age;
@@ -41,6 +43,7 @@ public class Person {
         this.height = height;
         this.physicalProblems = physicalProblems;
         this.mentalProblems = mentalProblems;
+        this.numOfChild = numOfChild;
     }
 
     //Constructor vacio o predeterminado
@@ -123,6 +126,12 @@ public class Person {
     }
     private void setMentalProblems(boolean mentalProblems){
         this.mentalProblems = mentalProblems;
+    }
+     public double getNumOfChild(){
+        return numOfChild;
+    }
+    public void setNumOfChild(double numOfChild){
+        this.numOfChild = numOfChild;
     }
     //Metodo toString para obtener datos del objeto
     @Override //Object -> utilizar este string y no del papá

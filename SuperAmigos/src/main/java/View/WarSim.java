@@ -8,7 +8,7 @@ import Model.Alfis;
 import Model.Create;
 import Model.Hero;
 import Model.WarMechanics;
-import Model.Validate;
+import Control.Validate;
 import java.util.ArrayList;
 import Model.Validate;
 

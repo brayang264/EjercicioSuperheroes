@@ -4,11 +4,12 @@
  */
 package View;
 import Model.Create;
-import Model.Validate;
+import Control.Validate;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Admin
+ * Clase para la interfaz grafica para el registro de personas
  */
 public class Register extends javax.swing.JPanel {
     private Create create = Create.getInstance();
@@ -62,6 +63,8 @@ public class Register extends javax.swing.JPanel {
         viewPersons = new javax.swing.JButton();
         calculateLevelEvil = new javax.swing.JButton();
         randomRegister = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        childField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(51, 51, 255));
 
@@ -146,6 +149,8 @@ public class Register extends javax.swing.JPanel {
             }
         });
 
+        jLabel12.setText("Número de hijos: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +185,7 @@ public class Register extends javax.swing.JPanel {
                                         .addGap(31, 31, 31)
                                         .addComponent(evilField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7)
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
@@ -191,7 +196,11 @@ public class Register extends javax.swing.JPanel {
                                     .addComponent(availabilityCheck)
                                     .addComponent(jLabel8)
                                     .addComponent(singleCheck)))
-                            .addComponent(mentalCheck)))
+                            .addComponent(mentalCheck)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(childField))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,8 +262,12 @@ public class Register extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)
                         .addGap(27, 27, 27)
-                        .addComponent(mentalCheck)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addComponent(mentalCheck)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(childField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerButton)
                     .addComponent(viewPersons))
@@ -281,22 +294,28 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_changedMentalCheck
 //Se hace un registro del usuario y se limpian los campos
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        if(validate.convertToFloat(ageField.getText())==-1||validate.convertToFloat(evilField.getText())==-1
-                ||validate.convertToFloat(weightField.getText())==-1||validate.convertToFloat(heightField.getText())
-                ==-1){
+        if(!validate.isANumber(ageField.getText())||!validate.isANumber(evilField.getText())
+                ||!validate.isANumber(weightField.getText())||!validate.isANumber(heightField.getText())
+              ||!validate.isANumber(childField.getText())){
             JOptionPane.showMessageDialog(null, "Se han ingresado datos de manera erronea",
                     "Datos incorrectos", 1);
+        }else if(fieldsEmply()){
+            JOptionPane.showMessageDialog(null, "Debe rellenar todos los campos solicitados","Error", 1);
         }else{
             create.createPerson(nameField.getText(), countryField.getText(),
                     validate.convertToFloat(ageField.getText()), availabilityCheck.isSelected(),
                     singleCheck.isSelected(), addressField.getText(), validate.convertToFloat(evilField.getText()), 
                     validate.convertToFloat(weightField.getText()),validate.convertToFloat(heightField.getText()) , physicalCheck.isShowing(),
-                    mentalCheck.isSelected());
+                    mentalCheck.isSelected(),(int)validate.convertToFloat(childField.getText()));
             clearFields();
             JOptionPane.showMessageDialog(null, "Se hizo un registro exitoso",
                     "Registro hecho ", 1);
         }
     }//GEN-LAST:event_registerButtonActionPerformed
+    //Comprueba que el usuario rellene todos los datos solicitados
+    private boolean fieldsEmply(){
+        return nameField.getText().isEmpty()||countryField.getText().isEmpty()||addressField.getText().isEmpty();
+    }
 //Metodo para ver las personas que se han registrado
     private void viewPersonsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPersonsActionPerformed
         validate.print(create.printPersons());
@@ -315,7 +334,7 @@ public class Register extends javax.swing.JPanel {
 
     private void randomRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomRegisterActionPerformed
        boolean flag = false;
-       String numOfPersonsText="";
+       String numOfPersonsText;
        int numOfPersons=0;
         do{
             
@@ -358,6 +377,7 @@ public class Register extends javax.swing.JPanel {
         heightField.setText("");
         physicalCheck.setSelected(false);
         mentalCheck.setSelected(false);
+        childField.setText("");
     }
     public void setEvilLevel(String evil){
         evilField.setText(evil);
@@ -369,12 +389,14 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JTextField ageField;
     private javax.swing.JCheckBox availabilityCheck;
     private javax.swing.JButton calculateLevelEvil;
+    private javax.swing.JTextField childField;
     private javax.swing.JTextField countryField;
     private javax.swing.JTextField evilField;
     private javax.swing.JTextField heightField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
