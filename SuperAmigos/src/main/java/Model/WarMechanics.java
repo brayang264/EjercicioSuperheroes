@@ -24,6 +24,7 @@ public class WarMechanics {
     private ArrayList<Alfis> alfiSide = new ArrayList();
     private ArrayList<String> deadHero = new ArrayList();
     private Validate validate = new Validate();
+    private ArrayList<String> combatStatus = new ArrayList();
     public WarMechanics(){
     }
 
@@ -37,7 +38,7 @@ public class WarMechanics {
     }
     // Inicializa los vectores en 10 posiciones de sus respectivas arrayLists
     // hace uso de los arrays state1 y state 2 para visualizar un estado del personaje, y establece la vida de cada uno 
-    private ArrayList<Integer> SepareSquads(){
+    private ArrayList<Integer> separeSquads(){
         int rEnd = 11;
         ArrayList<Integer> positions = new ArrayList();
         positions.add(0);
@@ -53,7 +54,7 @@ public class WarMechanics {
             }
         }
         positions.add(squad2Start);
-        positions.add(squad2Start + 10);
+        positions.add((squad2Start + 9) > heroes1.size() ? heroes1.size() : squad2Start + 9 );
         positions.add(heroes1.size());
         return positions;
     }
@@ -68,11 +69,9 @@ public class WarMechanics {
             heroSide.get(i).setHealth(100);
             alfiSide.get(i).setHealth(100);  
         }
-        for (int i = 10; i < heroes1.size(); i++) {
+        for (int i = 10; i < separeSquads().get(2); i++) {
             reinforcements1.add(heroes1.get(i));
-        }
-        System.out.println(SepareSquads());
-    
+        }  
     }
     // Método que crea un nuevo vector de String que contenga los nombres de cada Alfi
     public ArrayList<String> alfisToString(){
@@ -109,6 +108,7 @@ public class WarMechanics {
         Double probabilities = random.nextDouble();
         if (probabilities > 0.1 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getForce()/100) > 0 ? (defensor.getHealth()- atacante.getForce()/100) : 0));
+            reportActions(atacante.getSuperName(), defensor.getName(), "golpe", (int)((defensor.getHealth()- atacante.getForce()/100) > 0 ? (defensor.getHealth()- atacante.getForce()/100) : 0) );
         }
         
     }
@@ -119,12 +119,15 @@ public class WarMechanics {
         Double probabilities = random.nextDouble();
         if (defensor.inFly() && probabilities > 0.1 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
+            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0) );
         }
         else if (defensor.isInvisible() && probabilities > 0.95 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
+            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0) );
         }
         else if (atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
+            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0) );
         }
             
             
@@ -134,15 +137,19 @@ public class WarMechanics {
     public void deviceAction(Hero atacante, Alfis defensor){
         if ("Rayos UV".equals(atacante.getDevice().getWeaken())){
             defensor.setultraViolVul(true);
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
         }
         else if ("Vinagre".equals(atacante.getDevice().getWeaken())){
             defensor.setvinagerVul(true);
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
         }
         else if ("Rayos Gamma".equals(atacante.getDevice().getWeaken())){
             defensor.setgammaRVul(true);
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
         }
         else if ("H&S".equals(atacante.getDevice().getWeaken())){
             defensor.sethSVul(true);
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
         }
     }
     // método que cuando se activa genera un efecto si se ha activado la vulnerabilidad del alfi
@@ -182,17 +189,62 @@ public class WarMechanics {
     }
     // Método para identificar cuando todos los combatientes de uno u otro bando están muertos, y así terminar la ronda
     public boolean endFight(){
-        boolean end = true;
-            for(Hero elements: heroSide){
-                if((elements.getHealth() > 0) || (alfiSide.get(heroSide.indexOf(elements)).getHealth() > 0)){
-                    end = false;
-                    return end;
-                }
+        boolean end = false;
+            int numDthA = 0;
+        int numDthS = 0;
+        for(Hero elements : heroSide){
+            if (elements.getHealth() == 0) {
+                numDthS += 1;
             }
+        }
+        for(Alfis elements : alfiSide){
+            if (elements.getHealth() == 0) {
+                numDthA += 1;
+            }
+        }
+        if (numDthA+numDthS == 10 && reinforcements1.size() == 0) {
+            end = true;
+        }
         return end;
     }
+   
+    public String informCombatWinner(){
+        int numDthA = 0;
+        int numDthS = 0;
+        for(Hero elements : heroSide){
+            if (elements.getHealth() == 0) {
+                numDthS += 1;
+            }
+        }
+        for(Alfis elements : alfiSide){
+            if (elements.getHealth() == 0) {
+                numDthA += 1;
+            }
+        }
+        if (((numDthA == 10))) {
+            return "Los Super Humanos han ganado el combate";
+        }
+        else if (((numDthS == 10) || (numDthS >= numDthA )) && (reinforcements1.size() == 0)) {
+            return "Los Alfis han ganado la ronda";
+        }
+        else if (((numDthS == 10) || (numDthS >= numDthA )) && (reinforcements1.size() == 0) && endFight()) {
+            return "Los alfis han ganado el combate";
+        }
+        return "El combate no ha terminado, sigue luchando!!";
+    }
     
-    public ArrayList<String> CombatDeaths(){
+    public void fillNewRound(){
+        System.out.println(heroes1.size());
+        for(int i = 0; i < 10; i++){
+            heroSide.add(heroes1.get(separeSquads().get(2)+ i));
+            state1.add("☺");
+            heroSide.get(i).setHealth(100);
+        }
+        for (int i = separeSquads().get(3); i < separeSquads().get(4); i++) {
+            reinforcements1.add(heroes1.get(i));
+        }  
+    }
+    public ArrayList<String> combatDeaths(){
         for (Hero elements : heroes1) {
             if (elements.getHealth() == 0) {
                 deadHero.add(elements.getSuperName());
@@ -200,6 +252,19 @@ public class WarMechanics {
         }
         return deadHero;
     }
+    
+    public ArrayList<String> reportActions(String atacante, String defensor, String action, Integer damage){
+        combatStatus.add(atacante+" con un "+action+" le hace un total de "+damage.toString()+" a "+defensor);
+        combatStatus.add("\n-------------------------------------------------------");
+        return combatStatus;
+    }
+    public ArrayList<String> reportActions(String atacante, String defensor, String device, String weaken){
+        combatStatus.add(atacante+" con un/una "+device+" activa la vulnerabilidad al "+weaken+" de "+defensor);
+        combatStatus.add("\n-------------------------------------------------------");
+        return combatStatus;
+    }
+    
+ 
     
     
     public Boolean isdead(Hero hero){
@@ -217,6 +282,11 @@ public class WarMechanics {
     public ArrayList<Alfis> getAlfiSide() {
         return alfiSide;
     }
+
+    public ArrayList<String> getCombatStatus() {
+        return combatStatus;
+    }
+    
     
     }
   
