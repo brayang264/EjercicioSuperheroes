@@ -90,7 +90,7 @@ public class Create {
         Device device1 = new Device("Gafas rayos UV",20,100,20,"Rayos UV");
                 Device device2 = new Device("Shampoo H&S", 0, 0, 0, "H&S");
                 Device device3 = new Device("Pistola de rayos Gamma", 10, 120, 10, "Rayos Gamma");
-                Device device4 = new Device("Cortadora a pulso de Vinagre", 0, 60, 10, "Vinagre");
+                Device device4 = new Device("Cañón de sustancia vinagrada", 0, 60, 10, "Vinagre");
                 DeviceList.add(device1);
                 DeviceList.add(device2);
                 DeviceList.add(device3);
@@ -131,7 +131,7 @@ public class Create {
     public ArrayList<Alfis> createAlfi(int n){
        ArrayList<Alfis> alfisList = new ArrayList<>();
        for(int i = 0; i <n; i++){
-           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(100)), random.nextInt(100)+350);
+           Alfis alfi = new Alfis("Soldado colonizador N° "+Integer.toString(random.nextInt(2000)+1500), random.nextInt(100)+350);
            alfisList.add(alfi);
        }
        return alfisList;

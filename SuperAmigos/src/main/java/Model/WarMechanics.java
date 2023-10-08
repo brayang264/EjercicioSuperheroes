@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
-import Model.Validate;
+import Control.Validate;
 
 /**
  *
@@ -37,13 +37,28 @@ public class WarMechanics {
     }
     // Inicializa los vectores en 10 posiciones de sus respectivas arrayLists
     // hace uso de los arrays state1 y state 2 para visualizar un estado del personaje, y establece la vida de cada uno 
+    private ArrayList<Integer> SepareSquads(){
+        int rEnd = 11;
+        ArrayList<Integer> positions = new ArrayList();
+        positions.add(0);
+        positions.add(10);
+        int squad2Start = 10;
+        int squad2End = 20;
+        for (int i=11; i < 21; i++) {
+            if ((heroes1.get(i).getNumOfChild() > 0) || (heroes1.get(i).isSingle() == false)) {
+                if (squad2Start == 10) {
+                    squad2Start = i;
+                }
+                squad2End = i;
+            }
+        }
+        positions.add(squad2Start);
+        positions.add(squad2Start + 10);
+        positions.add(heroes1.size());
+        return positions;
+    }
     public void fillPositions (){
-        int rStart = 10;
-        int rEnd = 28%20 + 10;
-        int squad2Start = rEnd + 1;
-        int squad2End = squad2Start + 10;
-        int r2Start = squad2End + 1;
-        int r2End = heroes1.size();
+        
     
         for(int i = 0; i < 10; i++){
             heroSide.add(heroes1.get(i));
@@ -56,6 +71,7 @@ public class WarMechanics {
         for (int i = 10; i < heroes1.size(); i++) {
             reinforcements1.add(heroes1.get(i));
         }
+        System.out.println(SepareSquads());
     
     }
     // Método que crea un nuevo vector de String que contenga los nombres de cada Alfi
