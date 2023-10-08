@@ -10,7 +10,7 @@ import Model.Hero;
 import Model.WarMechanics;
 import Control.Validate;
 import java.util.ArrayList;
-import Model.Validate;
+import Control.Validate;
 
 public class WarSim extends javax.swing.JPanel {
     private Create create = Create.getInstance();
