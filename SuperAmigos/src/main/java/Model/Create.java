@@ -27,6 +27,8 @@ public class Create {
     private ArrayList<Person> personList = new ArrayList<Person>();
     //ArrayList para guardar los superhumanos
     private ArrayList<Hero> heroesList = new ArrayList<Hero>();
+    //Array list de heroes malvados
+    private ArrayList<Hero> evilHeroes = new ArrayList<Hero>();
     //ArrayList de artefactos
     private ArrayList<Device> DeviceList = new ArrayList();
     //ArraysList para crear nombres de heroes aleatoriamente
@@ -62,7 +64,11 @@ public class Create {
                 Hero hero = new Hero(JOptionPane.showInputDialog(null, "Ingrese el super nombre de "+
                         person.getName(), "Super nombre", 1),person.getWeight()*10,20,DeviceList.get(random.nextInt(4)),
                         false,false,false,false,false,point, 100,person);
-                addToListHero(hero);
+                if(hero.getScaleOfEvil() <3){
+                    addToListHero(hero);
+                }else{
+                    evilHeroes.add(hero);
+                }
                 personList.remove(person);
                 i--;
             }
@@ -79,7 +85,11 @@ public class Create {
                 Hero hero = new Hero(heroName.get(random.nextInt(29))+" "+
                         heroName2.get(random.nextInt(29)),person.getWeight()*10,20,DeviceList.get(random.nextInt(4)),
                         false,false,false,false,false,point, 100,person);
-                addToListHero(hero);
+                if(hero.getScaleOfEvil() <3){
+                    addToListHero(hero);
+                }else{
+                    evilHeroes.add(hero);
+                }
                 personList.remove(person);
                 i--;
             }
@@ -98,7 +108,7 @@ public class Create {
     }
     //Clasifica las personas
     private boolean clasificate(Person person){
-        return((person.getScaleOfEvil()<=2)&&person.isAvailability()&&!person.getMentalProblems()
+        return(person.isAvailability()&&!person.getMentalProblems()
                 &&!person.getPhysicalProblems());
     }
     //Agregar heroe a la lista
@@ -165,6 +175,21 @@ public class Create {
                     random.nextBoolean(),getAddress(),random.nextInt(5),random.nextInt(61)+60,
                     random.nextInt(51)+150,false,false,random.nextInt(4)+1);
         }
+    }
+    //Retorna los heroes malos
+    public ArrayList<Hero> getEvilHero(){
+        return evilHeroes;
+    }
+    //Imprime los heroes catalogados como malvados
+    public String printEvilHeroes(){
+        String answer ="----------------------\n";
+        if(evilHeroes.size()==0){
+            return "No hay heroes malvados en el momento";
+        }
+        for(Hero hero : evilHeroes){
+            answer += hero.toString()+"\n----------------------\n";
+        }
+        return answer;
     }
     //Obtiene un nombre al azar del array
     private String getName(){

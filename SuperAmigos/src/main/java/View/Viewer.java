@@ -21,6 +21,7 @@ private Create create = Create.getInstance();
      */
     private Viewer() {
         initComponents();
+        evilHerosFiled.setVisible(false);
     }
     public static Viewer getInstance(){
         if(instance == null){
@@ -41,6 +42,7 @@ private Create create = Create.getInstance();
         registerPersons = new javax.swing.JButton();
         createHeroes = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        evilHerosFiled = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +71,13 @@ private Create create = Create.getInstance();
             }
         });
 
+        evilHerosFiled.setText("Ver heroes malvados");
+        evilHerosFiled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evilHerosFiledActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -76,9 +85,10 @@ private Create create = Create.getInstance();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registerPersons, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(registerPersons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(createHeroes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(evilHerosFiled, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,9 +98,11 @@ private Create create = Create.getInstance();
                 .addComponent(registerPersons)
                 .addGap(18, 18, 18)
                 .addComponent(createHeroes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(evilHerosFiled, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addContainerGap(363, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
@@ -142,9 +154,11 @@ private Create create = Create.getInstance();
         if(answer == JOptionPane.YES_OPTION){
             create.createHero();
             validate.print(create.printHeroes());
+            evilHerosFiled.setVisible(true);
         }else{
             create.createHeroRandom();
             validate.print(create.printHeroes());
+            evilHerosFiled.setVisible(true);
         }
         
     }//GEN-LAST:event_createHeroesActionPerformed
@@ -158,6 +172,10 @@ private Create create = Create.getInstance();
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void evilHerosFiledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evilHerosFiledActionPerformed
+        validate.print(create.printEvilHeroes());
+    }//GEN-LAST:event_evilHerosFiledActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +215,7 @@ private Create create = Create.getInstance();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel content;
     private javax.swing.JButton createHeroes;
+    private javax.swing.JButton evilHerosFiled;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton registerPersons;

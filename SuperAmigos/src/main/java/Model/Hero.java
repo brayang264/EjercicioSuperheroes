@@ -153,7 +153,7 @@ public class Hero extends Person implements Poderes{
     @Override
     public String toString(){
         return "Super nombre: "+superName+"\nFuerza: "+force+"\nvisión: "+see+ "\nArtefacto: " +device.getDescription()
-                +"\nSoltero: "+this.isSingle()+"\nCant Hijos: "+this.getNumOfChild();
+                +"\nSoltero: "+this.isSingle()+"\nCant Hijos: "+this.getNumOfChild()+"\nNivel de maldad: "+this.getScaleOfEvil();
     }
     //Metodo para teletransportarse con otro super humano
 

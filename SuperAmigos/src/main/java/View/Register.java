@@ -305,7 +305,7 @@ public class Register extends javax.swing.JPanel {
             create.createPerson(nameField.getText(), countryField.getText(),
                     validate.convertToFloat(ageField.getText()), availabilityCheck.isSelected(),
                     singleCheck.isSelected(), addressField.getText(), validate.convertToFloat(evilField.getText()), 
-                    validate.convertToFloat(weightField.getText()),validate.convertToFloat(heightField.getText()) , physicalCheck.isShowing(),
+                    validate.convertToFloat(weightField.getText()),validate.convertToFloat(heightField.getText()) , physicalCheck.isSelected(),
                     mentalCheck.isSelected(),(int)validate.convertToFloat(childField.getText()));
             clearFields();
             JOptionPane.showMessageDialog(null, "Se hizo un registro exitoso",
