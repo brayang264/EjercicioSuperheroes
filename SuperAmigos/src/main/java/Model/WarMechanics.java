@@ -108,7 +108,7 @@ public class WarMechanics {
         Double probabilities = random.nextDouble();
         if (probabilities > 0.1 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getForce()/100) > 0 ? (defensor.getHealth()- atacante.getForce()/100) : 0));
-            reportActions(atacante.getSuperName(), defensor.getName(), "golpe", (int)((defensor.getHealth()- atacante.getForce()/100) > 0 ? (defensor.getHealth()- atacante.getForce()/100) : 0) );
+            reportActions(atacante.getSuperName(), defensor.getName(), "golpe", (int)(atacante.getForce()/100) );
         }
         
     }
@@ -119,15 +119,15 @@ public class WarMechanics {
         Double probabilities = random.nextDouble();
         if (defensor.inFly() && probabilities > 0.1 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
-            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0) );
+            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)(atacante.getsuperStrenght()/100));
         }
         else if (defensor.isInvisible() && probabilities > 0.95 && atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
-            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0) );
+            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)(atacante.getsuperStrenght()/100));
         }
         else if (atacante.getHealth() > 0){
             defensor.setHealth((int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0));
-            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)((defensor.getHealth()- atacante.getsuperStrenght()/100) > 0 ? (defensor.getHealth()- atacante.getsuperStrenght()/100) : 0) );
+            reportActions(atacante.getName(), defensor.getSuperName(), "golpe", (int)(atacante.getsuperStrenght()/100));
         }
             
             
@@ -137,19 +137,19 @@ public class WarMechanics {
     public void deviceAction(Hero atacante, Alfis defensor){
         if ("Rayos UV".equals(atacante.getDevice().getWeaken())){
             defensor.setultraViolVul(true);
-            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken()+" (divide su fuerza en 5 unidades)");
         }
         else if ("Vinagre".equals(atacante.getDevice().getWeaken())){
             defensor.setvinagerVul(true);
-            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken()+" (resta 15 de salud cada turno)");
         }
         else if ("Rayos Gamma".equals(atacante.getDevice().getWeaken())){
             defensor.setgammaRVul(true);
-            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken()+"El Alfi muere");
         }
         else if ("H&S".equals(atacante.getDevice().getWeaken())){
             defensor.sethSVul(true);
-            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken());
+            reportActions(atacante.getSuperName(), defensor.getName(),atacante.getDevice().getDescription(), atacante.getDevice().getWeaken()+"(El Alfi muere)");
         }
     }
     // método que cuando se activa genera un efecto si se ha activado la vulnerabilidad del alfi
@@ -254,13 +254,13 @@ public class WarMechanics {
     }
     
     public ArrayList<String> reportActions(String atacante, String defensor, String action, Integer damage){
-        combatStatus.add(atacante+" con un "+action+" le hace un total de "+damage.toString()+" a "+defensor);
-        combatStatus.add("\n-------------------------------------------------------");
+        combatStatus.add(atacante+" con un "+action+" le resta un total de "+damage.toString()+" puntos de salud a "+defensor);
+        combatStatus.add("\n---------------------------------------------------------------------------------------------------------------------");
         return combatStatus;
     }
     public ArrayList<String> reportActions(String atacante, String defensor, String device, String weaken){
         combatStatus.add(atacante+" con un/una "+device+" activa la vulnerabilidad al "+weaken+" de "+defensor);
-        combatStatus.add("\n-------------------------------------------------------");
+        combatStatus.add("\n---------------------------------------------------------------------------------------------------------------------");
         return combatStatus;
     }
     

@@ -79,8 +79,6 @@ public class WarSim extends javax.swing.JPanel {
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        reportCombat = new javax.swing.JList<>();
 
         jLabel5.setText("Posición 1");
 
@@ -196,8 +194,6 @@ public class WarSim extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setViewportView(reportCombat);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -251,7 +247,6 @@ public class WarSim extends javax.swing.JPanel {
                         .addContainerGap(248, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
@@ -341,9 +336,7 @@ public class WarSim extends javax.swing.JPanel {
                     .addComponent(jToggleButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -379,10 +372,18 @@ public class WarSim extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         updateInAttack();
-        DefaultListModel modelo = new DefaultListModel();
+        Validate validate = new Validate();
+        String log = "Registro de Combate ";
+        log += "\n---------------------------------------------------------------------------------------------------------------------";
+        for (String elements : primer.getCombatStatus()) {
+            log += "\n";
+            log += elements;      
+        }
+        validate.print(log);
+        /*DefaultListModel modelo = new DefaultListModel();
         reportCombat.setModel(modelo);
         modelo.removeAllElements();
-        modelo.addElement(primer.getCombatStatus());
+        modelo.addElement(primer.getCombatStatus());*/
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -457,9 +458,7 @@ public class WarSim extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JList<String> reportCombat;
     private javax.swing.JButton startSimulation;
     // End of variables declaration//GEN-END:variables
 public void showLabels(){

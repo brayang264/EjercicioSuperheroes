@@ -348,7 +348,7 @@ public class Register extends javax.swing.JPanel {
                numOfPersons = (int)validate.convertToFloat(numOfPersonsText);
            }if(numOfPersons <20){
                validate.print("Ingrese un número mayor a 20");
-           }else if(numOfPersons %2 !=0){
+           }else if(numOfPersons %1 !=0){
                validate.print("Ingrese un número entero");
            }else{
                flag=true;
